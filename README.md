@@ -1,6 +1,6 @@
-# pptt
+# Programming Project Template/Tracker
 
-# book_app
+### PROJECT SPICY-CHRONIC
 
 **Authors**:
 Candice Thomas
@@ -8,13 +8,33 @@ Diego Ramos
 Heather Palmer
 Vince Masten
 
-**Version**: 1.0.0
+## Team Resources
 
-## Overview
+- [Wireframes](https://github.com/diego-ramos130/pptt/blob/master/wireframe-images/Wireframe%20and%20Userflow.jpg)
+- [Code Repository](https://github.com/diego-ramos130/pptt)
+- [Agile Board](https://github.com/diego-ramos130/pptt/projects)
+- [Live App (Heroku)](https://p2t2.herokuapp.com/)
 
-## Getting Started
-1. Fork and clone repo.
-2. Open index page.
+___
+
+## Application Summary
+**Problem Domain**
+
+
+**Solution/Application**
+
+
+
+**User Path and Workflow**
+- User sees this screen
+- User does action "a'
+- This will go to the server and do a thing
+- User now sees this other screen.
+
+
+**Data/Code Path**
+- this will change
+- over the course of the week...
 
 ## Architecture
 - HTML
@@ -28,8 +48,3 @@ Vince Masten
 - SQL
 - Postgresql
 - Heroku
-
-## Change Log
-
-
-## Credits and Collaborations
