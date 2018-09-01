@@ -6,6 +6,7 @@ const express = require('express');
 const PORT = process.env.PORT;
 const app = express();
 const client = new pg.Client(process.env.DATABASE_URL);
+const superagent = require('superagent');
 client.connect();
 
 app.set('view engine', 'ejs');
@@ -20,3 +21,6 @@ function initializeHomePage(req,res){
 }
 
 app.listen(PORT, () => console.log(`server hath started on port ${PORT}`));
+
+//database initialization
+
