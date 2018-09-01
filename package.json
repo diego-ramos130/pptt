@@ -1,0 +1,29 @@
+{
+  "name": "pptt",
+  "version": "1.0.0",
+  "description": "A program that keeps track of programming project template",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diego-ramos130/pptt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diego-ramos130/pptt/issues"
+  },
+  "homepage": "https://github.com/diego-ramos130/pptt#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "node": "^10.9.0",
+    "nodemon": "^1.18.4",
+    "pg": "^7.4.3",
+    "superagent": "^3.8.3"
+  }
+}
