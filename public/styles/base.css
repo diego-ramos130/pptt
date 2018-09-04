@@ -147,7 +147,7 @@ a {
   border-radius: 8px;
 }
 
-.new-button > span {
+.new-button > a {
   display: block;
   margin: 17px 0;
   background-color: transparent;

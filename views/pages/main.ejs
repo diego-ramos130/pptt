@@ -23,16 +23,28 @@
         <div id="new-project">
           <h2>New Project</h3>
           <div class="new-button">
-            <span>clicky</span>
+            <a href="/form">clicky</a>
           </div>
         </div>
         <div id="open-projects">
           <h2>Open Projects</h3>
           <span>Some of our open projects</span>
+
           <% cardbase.forEach(card => {%>
-            <h3><%= card.name %></h3> 
-            
+
+            <div class="card">
+              <h3><%= card.name %></h3> 
+                <p class="collab">Chillaborator #a1</p>
+                <p class="collab">Chillaborator #a2</p>
+                <p class="collab">Chillaborator #a3</p>
+                <p class="desc">This is a quick description of the project by these chillaborators, I'm sure it's great.</p>
+                <div class="project-link">
+                  <a href="/project/:id">clicky clicky</a>
+                </div>
+            </div>
+
           <% }) %>
+
           <div class="card">
             <h3>Project One</h3>
             <p class="collab">Chillaborator #a1</p>
