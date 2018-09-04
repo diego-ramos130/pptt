@@ -157,3 +157,12 @@ v  height: 250px;
 .new-button:hover {
   background-color: rgb(3, 169, 209);
 }
+/******* FORM STYLES *******/
+#form-card {
+  width: 100%;
+}
+
+.form-styles {
+    height: 20em;
+    width: 100%;
+}
