@@ -29,6 +29,10 @@
         <div id="open-projects">
           <h2>Open Projects</h3>
           <span>Some of our open projects</span>
+          <% cardbase.forEach(card => {%>
+            <h3><%= card.name %></h3> 
+            
+          <% }) %>
           <div class="card">
             <h3>Project One</h3>
             <p class="collab">Chillaborator #a1</p>
