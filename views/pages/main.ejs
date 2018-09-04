@@ -28,6 +28,10 @@
         <div id="open-projects">
           <h2>Open Projects</h3>
           <span>Some of our open projects</span>
+          <% cardbase.forEach(card => {%>
+            <h3><%= card.name %></h3> 
+            
+          <% }) %>
           <div class="card">
             <h3>Project One</h3>
             <img src="https://via.placeholder.com/375x100" alt="Project One pic">

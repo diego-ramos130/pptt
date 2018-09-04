@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
-
+app.post('/form/complete', githubPostToBase);
 app.get('/form', initializeFormPage);
 app.get('/dashboard', initializeDashboardPage);
 app.get('/', initializeHomePage);
@@ -22,7 +22,12 @@ app.get('/', githubHit); //put data into input fields here
 //app.post('', githubPostToBase); //take data out of input fields here and post to database. render accordingly 
 
 function initializeHomePage(req,res){
-  res.render('pages/main');
+  let SQL = `SELECT collaborators,name,startdate,enddate FROM projects;`;
+  client.query(SQL)
+    .then(result => {
+      let cardbase = result.rows;
+      res.render('pages/main', {cardbase});
+    })
 }
 
 function initializeFormPage(req, res) {
@@ -43,7 +48,7 @@ function githubHit(req,res){
   let endOfString = `${req.body.user}/${req.body.repo}`;
   let conString = startOfString + endOfString;
   superagent.get(conString)
-      .then(data => {
+    .then(data => {
       console.log(data.body.html_url);
       console.log(data.body.name);
       console.log(data.body.open_issues);
@@ -63,17 +68,19 @@ function githubHit(req,res){
 }
 
 function githubPostToBase(req, res) {
-  let endOfString = `${req.body.user}/${req.body.repo}`;
-  let conString = startOfString + endOfString;
-  superagent.get(conString)
-    .then(data => {
-      let SQL = `INSERT INTO projects(name)
-      VALUES ($1);
-      `;
-      let values = [data.body.name];
-      client.query(SQL, values);
-    });
-
+/*   let githubLink = req.body.github_repo;
+  let splitHubUser = githubLink.split('/')[3];
+  let splitHubRepo = githubLink.split('/')[4]; */
+  /*  let conString = `${startOfString}${splitHubUser}/${splitHubRepo}`;
+  console.log(conString); */
+  /* superagent.get(conString)
+    .then(data => { */
+  let SQL = `INSERT INTO projects(collaborators,name,startdate,enddate)
+  VALUES ($1,$2,$3,$4);`;
+  let values = [req.body.collaborators, req.body.project_name,req.body.start_date, req.body.due_date];
+  client.query(SQL, values);
+  res.render('pages/success');
+/* }); */
 }
 
 app.use(express.static(__dirname + '/public'));
@@ -82,14 +89,14 @@ app.listen(PORT, () => console.log(`server hath started on port ${PORT}`));
 
 //database initialization
 
-let sampleRequest = {
+/* let sampleRequest = {
   body : {
     user : 'diego-ramos130',
     repo : 'pptt'
   }
-}; 
+};  */
 //console.log(sampleRequest);
 
 // githubHit(sampleRequest, 0);
 
-githubPostToBase(sampleRequest, 0);
+//githubPostToBase(sampleRequest, 0);
