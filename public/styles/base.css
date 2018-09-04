@@ -157,6 +157,7 @@ a {
 .new-button:hover {
   background-color: rgb(3, 169, 209);
 }
+
 /******* FORM STYLES *******/
 #form-card {
   width: 100%;
@@ -165,4 +166,18 @@ a {
 .form-styles {
     height: 20em;
     width: 100%;
+}
+
+/******* FOOTER STYLES *******/
+footer {
+  background-color: rgb(85, 52, 123);
+  border-radius: 0;
+  bottom: 0;
+  color: rgb(205, 213, 298);
+  height: 2em;
+  left: 0;
+  padding: .5em;
+  position: fixed;
+  text-align: center;
+  width: 100%;
 }
