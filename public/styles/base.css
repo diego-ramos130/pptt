@@ -3,6 +3,7 @@
   color: rgb(34, 19, 55);
   font-family: Helvetica, Arial, sans-serif;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 h1 {
@@ -12,20 +13,49 @@ h1 {
   font-weight: bolder;
   font-variant: small-caps;
   color: rgb(205, 213, 298);
+  border-radius: 0px !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 h2 {
   font-size: 3em;
   padding: 20px;
   display: block;
 }
+
 h3 {
   font-size: 2em;
   color: rgb(205, 213, 298);
-  padding: 10px;
+  padding: 20px 0 0 0;
 }
+
 header > * {
   background-color: rgb(85, 52, 123);
   padding: 20px 0;
+}
+
+nav {
+  width: 375px;
+  background-color: transparent;
+  visibility: hidden;
+}
+
+header:hover nav {
+  visibility: visible;
+}
+
+nav > ul {
+  width: 100%;
+  margin: 0 auto;
+}
+
+nav > ul > li {
+  display: inline-block;
+  margin: 0 5%;
+}
+
+a {
+  text-decoration: none;
 }
 
 .content-wrap {
@@ -35,21 +65,61 @@ header > * {
   color: white;
   text-align: center;
 }
+
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  height: 200px;
+v  height: 250px;
   width: 99%;
   background-color: rgb(3, 169, 209);
-  margin: 15px 0;
+  margin: 20px 0 15px 0;
+  position: relative;
 }
+
 .card > * {
   background-color: rgb(3, 169, 209);
   width: 99%;
 }
 
+.card > img {
+  border-radius: 1px;
+}
+
+.collab {
+  font-style: italic;
+  font-size: .75em;
+  margin: 8px 0;
+}
+
+.desc {
+  text-align: justify;
+  padding: 0 10px;
+  margin: 15px 0;
+}
+
+.project-link {
+  width: 200px;
+  height: 50px;
+  background-color: rgb(34, 19, 55);
+  position: absolute;
+  bottom: 25px;
+  left: 23%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+}
+
+.project-link > a {
+  display: block;
+  margin: 17px 0;
+  background-color: transparent;
+  color: rgb(205, 213, 298);
+  letter-spacing: 2px;
+}
+
+.project-link:hover {
+  background-color: rgb(183, 31, 150);
+}
+
 #open-projects {
   width: 100%;
-  min-height: 100px;
 }
 
 #new-project {
@@ -58,23 +128,32 @@ header > * {
   height: 150px;
   display: block;
   background-color: rgb(183, 31, 150);
-  margin: 30px 0;
+  margin-bottom: 40px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
-#new-project > * {
+#new-project > h2 {
   background-color: rgb(183, 31, 150);
-  border-radius: 3px;
 }
 
 .new-button {
   width: 200px;
   height: 50px;
-  background-color: rgb(34, 19, 55) !important;
+  background-color: rgb(34, 19, 55);
   position: absolute;
   bottom: 25px;
   left: 23%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 8px;
+}
+
+.new-button > span {
+  display: block;
+  margin: 17px 0;
+  background-color: transparent;
+  color: rgb(205, 213, 298);
+  letter-spacing: 2px;
+}
+.new-button:hover {
+  background-color: rgb(3, 169, 209);
 }
