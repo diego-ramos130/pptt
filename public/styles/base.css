@@ -16,11 +16,12 @@ h1 {
   border-radius: 0px !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-shadow: 2px 2px rgba(0, 0, 0, 0.7);
+  padding: 20px 0;
+  margin: 0;
 }
 
 h2 {
   font-size: 3em;
-  padding: 20px;
   display: block;
   text-shadow: 2px 2px rgba(85, 52, 123, .5);
 }
@@ -28,19 +29,25 @@ h2 {
 h3 {
   font-size: 2em;
   color: rgb(205, 213, 298);
-  padding: 20px 0 0 0;
-  text-shadow: 2px 2px rgba(85, 52, 123, .5);
+  text-shadow: 2px 2px 10px rgb(85, 52, 123);
+  padding-top: 20px;
+}
+
+header {
+  width: 100%;
+  top: 0;
 }
 
 header > * {
   background-color: rgb(85, 52, 123);
-  padding: 20px 0;
 }
 
 nav {
   width: 375px;
   background-color: transparent;
   visibility: hidden;
+  height: 50px;
+  padding-top: 20px;
 }
 
 header:hover nav {
@@ -49,12 +56,17 @@ header:hover nav {
 
 nav > ul {
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
+  display: block;
+  list-style: none;
+  padding: 0;
 }
 
 nav > ul > li {
   display: inline-block;
-  margin: 0 5%;
+  margin: 0 2%;
+  text-transform: uppercase;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 a {
@@ -70,7 +82,8 @@ a {
 }
 
 .card {
-  height: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 275px;
   width: 99%;
   background-color: rgb(3, 169, 209);
   margin: 20px 0 15px 0;
@@ -95,7 +108,7 @@ a {
 .desc {
   text-align: justify;
   padding: 0 10px;
-  margin: 15px 0;
+  margin: 20px 0;
 }
 
 .project-link {
@@ -103,7 +116,7 @@ a {
   height: 50px;
   background-color: rgb(34, 19, 55);
   position: absolute;
-  bottom: 25px;
+  bottom: 15px;
   left: 23%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 8px;
@@ -126,18 +139,23 @@ a {
   width: 100%;
 }
 
+#open-projects > h2 {
+  margin-bottom: 10px;
+}
+
 #new-project {
   width: 100%;
   position: relative;
   height: 150px;
   display: block;
   background-color: rgb(183, 31, 150);
-  margin-bottom: 40px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #new-project > h2 {
   background-color: rgb(183, 31, 150);
+  padding: 20px;
+  margin: 0;
 }
 
 .new-button {
@@ -145,7 +163,7 @@ a {
   height: 50px;
   background-color: rgb(34, 19, 55);
   position: absolute;
-  bottom: 25px;
+  bottom: 20px;
   left: 23%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 8px;
