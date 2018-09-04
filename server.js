@@ -15,12 +15,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
+app.get('/form', initializeFormPage);
+app.get('/dashboard', initializeDashboardPage);
 app.get('/', initializeHomePage);
 app.get('/', githubHit); //put data into input fields here
 //app.post('', githubPostToBase); //take data out of input fields here and post to database. render accordingly 
 
 function initializeHomePage(req,res){
   res.render('pages/main');
+}
+
+function initializeFormPage(req, res) {
+  res.render('pages/form');
+}
+
+function initializeDashboardPage(req, res) {
+  res.render('pages/dashboard');
 }
 
 function throwError(response, err) {
@@ -57,12 +67,10 @@ function githubPostToBase(req, res) {
   let conString = startOfString + endOfString;
   superagent.get(conString)
     .then(data => {
-      console.log('hello');
       let SQL = `INSERT INTO projects(name)
       VALUES ($1);
       `;
       let values = [data.body.name];
-      console.log(data.body.name);
       client.query(SQL, values);
     });
 
