@@ -19,7 +19,7 @@ app.get('/form', initializeFormPage);
 app.get('/dashboard', initializeDashboardPage);
 app.get('/', initializeHomePage);
 app.get('/', githubHit); //put data into input fields here
-//app.post('', githubPostToBase); //take data out of input fields here and post to database. render accordingly 
+//app.post('', githubPostToBase); //take data out of input fields here and post to database. render accordingly
 
 function initializeHomePage(req,res){
   let SQL = `SELECT collaborators,name,startdate,enddate FROM projects;`;
@@ -27,7 +27,7 @@ function initializeHomePage(req,res){
     .then(result => {
       let cardbase = result.rows;
       res.render('pages/main', {cardbase});
-    })
+    });
 }
 
 function initializeFormPage(req, res) {
@@ -35,7 +35,20 @@ function initializeFormPage(req, res) {
 }
 
 function initializeDashboardPage(req, res) {
-  res.render('pages/dashboard');
+  let SQL = `SELECT name, repo_url FROM projects
+              WHERE id=1;`;
+  client.query(SQL)
+    .then (result => {
+      let project = result.rows[0];
+      let splitHubUser = project.repo_url.split('/')[3];
+      let splitHubRepo = project.repo_url.split('/')[4];
+      let conString = `${startOfString}${splitHubUser}/${splitHubRepo}/issues`;
+      superagent.get(conString)
+        .then(data => {
+          let latestIssue = data.body.filter((issue, i) => {i < 5});
+          res.render('pages/dashboard', {latestIssue});
+        });
+    });
 }
 
 function throwError(response, err) {
@@ -52,7 +65,7 @@ function githubHit(req,res){
       console.log(data.body.html_url);
       console.log(data.body.name);
       console.log(data.body.open_issues);
-    })
+    });
   /* let issues = conString +'/issues/25';
   console.log(issues);
   superagent.get(issues)
@@ -62,9 +75,9 @@ function githubHit(req,res){
       console.log(datum.body.created_at);
       console.log(datum.body.updated_at);
     }) */
-    // .catch(error => {
-    //   console.error(error);
-    // });
+  // .catch(error => {
+  //   console.error(error);
+  // });
 }
 
 function githubPostToBase(req, res) {
@@ -75,9 +88,9 @@ function githubPostToBase(req, res) {
   console.log(conString); */
   /* superagent.get(conString)
     .then(data => { */
-  let SQL = `INSERT INTO projects(collaborators,name,startdate,enddate)
-  VALUES ($1,$2,$3,$4);`;
-  let values = [req.body.collaborators, req.body.project_name,req.body.start_date, req.body.due_date];
+  let SQL = `INSERT INTO projects(collaborators,name,startdate,enddate,github_repo)
+  VALUES ($1,$2,$3,$4,$5);`;
+  let values = [req.body.collaborators, req.body.project_name, req.body.start_date, req.body.due_date, req.body.github_repo];
   client.query(SQL, values);
   res.render('pages/success');
 /* }); */
