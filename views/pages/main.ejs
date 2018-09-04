@@ -1,12 +1,51 @@
+<!DOCTYPE html>
 <html>
-
   <head>
-    <%- include ../partials/head %>
+    <!-- <%- include ../partials/head %> -->
+    <title>p2t2</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/styles/reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/styles/base.css" />
   </head>
-  
   <body>
-    <h1> HELLO WORLD!</h1>
-  
+    <header>
+      <h1>Programming Project Templater & Tracker</h1>
+      <nav>
+        <ul>
+          <li>Home</li>
+          <li>About Us</li>
+          <li>More Info</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="content-wrap">
+        <div id="new-project">
+          <h2>New Project</h3>
+          <div class="new-button">
+            <span>Go here for a new project</span>
+          </div>
+        </div>
+        <div id="open-projects">
+          <h2>Open Projects</h3>
+          <span>Some of our open projects</span>
+          <div class="card">
+            <h3>Project One</h3>
+            <img src="https://via.placeholder.com/375x100" alt="Project One pic">
+            <span>Go here for Project One</span>
+          </div>
+          <div class="card">
+            <h3>Project Two</h3>
+            <img src="https://via.placeholder.com/375x100" alt="Project two pic">
+            <span>Go here for Project Two</span>
+          </div>
+          <div class="card">
+            <h3>Project Three</h3>
+            <img src="https://via.placeholder.com/375x100" alt="Project three pic">
+            <span>Go here for Project Three</span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>&copy; HPVMDRCT, 2018</footer>
   </body>
-
 </html>
