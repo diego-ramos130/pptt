@@ -1,22 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- <%- include ../partials/head %> -->
-    <title>p2t2</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="/styles/reset.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/styles/base.css" />
+    <%- include ../partials/head %>
   </head>
   <body>
     <header>
-      <h1>Programming Project Templater & Tracker</h1>
-      <nav class="content-wrap">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="/about-us">About Us</a></li>
-          <li><a href="#new-project">Form</a></li>
-          <li><a href="#open-projects">Projects</a></li>
-        </ul>
-      </nav>
+      <%- include ../partials/nav %>
     </header>
     <main>
       <div class="content-wrap">
@@ -33,7 +22,7 @@
           <% cardbase.forEach(card => {%>
 
             <div class="card">
-              <h3><%= card.name %></h3> 
+              <h3><%= card.name %></h3>
                 <p class="collab">Chillaborator #a1</p>
                 <p class="collab">Chillaborator #a2</p>
                 <p class="collab">Chillaborator #a3</p>
