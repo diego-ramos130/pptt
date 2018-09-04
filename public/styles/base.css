@@ -15,18 +15,21 @@ h1 {
   color: rgb(205, 213, 298);
   border-radius: 0px !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.7);
 }
 
 h2 {
   font-size: 3em;
   padding: 20px;
   display: block;
+  text-shadow: 2px 2px rgba(85, 52, 123, .5);
 }
 
 h3 {
   font-size: 2em;
   color: rgb(205, 213, 298);
   padding: 20px 0 0 0;
+  text-shadow: 2px 2px rgba(85, 52, 123, .5);
 }
 
 header > * {
@@ -112,6 +115,7 @@ a {
   background-color: transparent;
   color: rgb(205, 213, 298);
   letter-spacing: 2px;
+  height: 15px;
 }
 
 .project-link:hover {
