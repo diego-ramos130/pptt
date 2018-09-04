@@ -13,16 +13,19 @@ h1 {
   font-variant: small-caps;
   color: rgb(205, 213, 298);
 }
+
 h2 {
   font-size: 3em;
   padding: 20px;
   display: block;
 }
+
 h3 {
   font-size: 2em;
   color: rgb(205, 213, 298);
   padding: 10px;
 }
+
 header > * {
   background-color: rgb(85, 52, 123);
   padding: 20px 0;
@@ -35,6 +38,7 @@ header > * {
   color: white;
   text-align: center;
 }
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 200px;
@@ -42,6 +46,7 @@ header > * {
   background-color: rgb(3, 169, 209);
   margin: 15px 0;
 }
+
 .card > * {
   background-color: rgb(3, 169, 209);
   width: 99%;
@@ -77,4 +82,14 @@ header > * {
   left: 23%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 8px;
+}
+
+/******* FORM STYLES *******/
+#form-card {
+  width: 100%;
+}
+
+.form-styles {
+    height: 20em;
+    width: 100%;
 }
