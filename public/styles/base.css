@@ -129,6 +129,7 @@ input {
 .project-link > a {
   background-color: transparent;
   color: rgb(205, 213, 298);
+  display: block;
   letter-spacing: .1em;
   margin: .75em 0;
 }
