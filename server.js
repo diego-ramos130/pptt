@@ -20,15 +20,35 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 app.post('/form/complete', githubPostToBase);
 app.get('/testertons', test);
+app.post('/testertons', testBump);
 app.get('/form', initializeFormPage);
 app.get('/dashboard', initializeDashboardPage);
 app.get('/', initializeHomePage);
 app.get('/', githubHit); //put data into input fields here
 //app.post('', githubPostToBase); //take data out of input fields here and post to database. render accordingly
 
-
+function testBump(req,res){
+  let SQL = 'INSERT INTO events(project_id,title,startdate,enddate,description) VALUES($1,$2,$3,$4,$5);';
+  let values = [req.body.project_id, req.body.name, req.body.startdate, req.body.enddate,req.body.descript];
+  client.query(SQL, values)
+    .then(() => {
+      let SQL = 'SELECT * FROM events WHERE project_id=$1;';
+      values = [req.body.project_id];
+      client.query(SQL,values)
+        .then(result =>{
+          let eventsFromServer = result.rows;
+          res.render('pages/test', eventsFromServer);
+        })
+    });
+}
 function test(req,res){
-  res.render('pages/test');
+  let SQL= 'SELECT * FROM events WHERE project_id=7;';
+  client.query(SQL)
+    .then(result => {
+      console.log(result.rows);
+      let eventsFromServer = result.rows;
+      res.render('pages/test', {eventsFromServer});
+    })
 }
 function initializeHomePage(req,res){
   let SQL = `SELECT collaborators,name,startdate,enddate FROM projects;`;

@@ -3,6 +3,10 @@
  * Docs & License: https://fullcalendar.io/
  * (c) 2018 Adam Shaw
  */
+ #calendar{
+  max-width: 800px;
+  max-height: 800px;
+}
 .fc {
   direction: ltr;
   text-align: left; }

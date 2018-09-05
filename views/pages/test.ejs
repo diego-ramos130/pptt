@@ -7,39 +7,40 @@
     DAMN I LOVE A GOOD T+PAZOLITE TRACK 
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   <%- include ../partials/scripts %>
   <script>
     $(function () {
-
         // page is now ready, initialize the calendar...
-
+        
+        let parse = <%- parsed %>;
+        
         $('#calendar').fullCalendar({
           defaultView: 'basicWeek',
           header: {
             left:'title' ,
             center:'',
             right:'basicWeek,month prev,next'
-          },
-          events: [
-            {
-              title: 'lemme see if this works',
-              start: '2018/09/05',
-              end: '2018/09/07'
-            }
-          ]
-        })
-
-      });
+          },  
+          events: parse
+      })
+    })
   </script>
 </head>
 <body>
   <p>YEET</p>
   <div id='calendar'></div>
   <div id='add-sum-stuff'>
-    <form action="/hitmydbboi" >
-      <input type='text'>
-      <input type=
+    <form action="/testertons/complete" method='POST'>
+      <input name='project_id' type=hidden>
+      <label for="name">Name of Project</label>
+      <input name='name' type='text'>
+      <label for='startdate'>Start Date</label>
+      <input name='startdate'type='date'>
+      <label for='enddate'>End Date</label>
+      <input name='enddate' type='date'>
+      <label for='descript'>Description</label>
+      <input name='descript' type='textarea'>
+      <button>Submit that shit fool</button>
     </form>
   </div>
 </body>
