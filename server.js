@@ -10,6 +10,15 @@ const superagent = require('superagent');
 const startOfString = 'https://api.github.com/repos/';
 client.connect();
 
+// Additional requirements for utilizing node-html-pdf
+const fs = require('fs');
+const pdf = require('html-pdf');
+var options = {
+  format : 'Letter',
+  base : 'http://p2t2.herokuapp.com/' };
+const ejs = require('ejs');
+// End of additional requirements for node-html-pdf
+
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -118,3 +127,34 @@ app.listen(PORT, () => console.log(`server hath started on port ${PORT}`));
 // githubHit(sampleRequest, 0);
 
 //githubPostToBase(sampleRequest, 0);
+
+// Create a PDF file function
+function makePDF(req, res) {
+  let SQL = `SELECT name, repo_url FROM projects
+              WHERE id=1;`;
+  client.query(SQL)
+    .then (result => {
+      let project = result.rows[0];
+      let splitHubUser = project.repo_url.split('/')[3];
+      let splitHubRepo = project.repo_url.split('/')[4];
+      let conString = `${startOfString}${splitHubUser}/${splitHubRepo}/issues`;
+      superagent.get(conString)
+        .then(data => {
+          let latestIssue = data.body.slice(0, 4);
+          let html;
+          ejs.renderFile('./views/pages/dashboard.ejs', {latestIssue}, function(err, res) {
+            if(res) {
+              html = res;
+              console.log(html);
+            }
+            else {
+              console.log(err);
+            }
+          });
+          pdf.create(html, options).toFile(function(err, res) {
+            if (err) return console.log(err);
+            console.log(res);
+          });
+        });
+    });
+}
