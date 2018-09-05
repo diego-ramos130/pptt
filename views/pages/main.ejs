@@ -4,9 +4,7 @@
     <%- include ../partials/head %>
   </head>
   <body>
-    <header>
-      <%- include ../partials/nav %>
-    </header>
+    <%- include ../partials/nav %>
     <main>
       <div class="content-wrap">
         <div id="new-project">
@@ -22,46 +20,46 @@
           <% cardbase.forEach(card => {%>
 
             <div class="card">
-              <h3><%= card.name %></h3>
+              <h3><%= card.name %></h3> 
                 <p class="collab">Chillaborator #a1</p>
                 <p class="collab">Chillaborator #a2</p>
                 <p class="collab">Chillaborator #a3</p>
                 <p class="desc">This is a quick description of the project by these chillaborators, I'm sure it's great.</p>
                 <div class="project-link">
-                  <a href="/project/:id">clicky clicky</a>
+                  <a href="/dashboard/:id">clicky clicky</a>
                 </div>
             </div>
 
           <% }) %>
 
           <div class="card">
-            <h3>Project One</h3>
+            <h3>Project One (static)</h3>
             <p class="collab">Chillaborator #a1</p>
             <p class="collab">Chillaborator #a2</p>
             <p class="collab">Chillaborator #a3</p>
             <p class="desc">This is a quick description of the project by these chillaborators, I'm sure it's great.</p>
             <div class="project-link">
-              <a href="/project/:id">clicky clicky</a>
+              <a href="/dashboard/:id">clicky clicky</a>
             </div>
           </div>
           <div class="card">
-            <h3>Project Two</h3>
+            <h3>Project Two (static)</h3>
             <p class="collab">Chillaborator #b1</p>
             <p class="collab">Chillaborator #b2</p>
             <p class="collab">Chillaborator #b3</p>
             <p class="desc">This is a quick description of the project by these chillaborators, I'm sure it's great.</p>
             <div class="project-link">
-              <a href="/project/:id">clicky clicky</a>
+              <a href="/dashboard/:id">clicky clicky</a>
             </div>
           </div>
           <div class="card">
-            <h3>Project Three</h3>
+            <h3>Project Three (static)</h3>
             <p class="collab">Chillaborator #c1</p>
             <p class="collab">Chillaborator #c2</p>
             <p class="collab">Chillaborator #c3</p>
             <p class="desc">This is a quick description of the project by these chillaborators, I'm sure it's great.</p>
             <div class="project-link">
-              <a href="/project/:id">clicky clicky</a>
+              <a href="/dashboard/:id">clicky clicky</a>
             </div>
           </div>
         </div>
