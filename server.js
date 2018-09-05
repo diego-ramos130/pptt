@@ -27,7 +27,8 @@ app.post('/form/complete', githubPostToBase);
 app.get('/testertons', test);
 app.post('/testertons', testBump);
 app.get('/form', initializeFormPage);
-app.get('/dashboard', initializeDashboardPage);
+app.get('/dashboard/:id', initializeDashboardPage);
+app.get('/about', initializeAboutPage);
 app.get('/', initializeHomePage);
 app.get('/', githubHit); //put data into input fields here
 //app.post('', githubPostToBase); //take data out of input fields here and post to database. render accordingly
@@ -56,7 +57,7 @@ function test(req,res){
     })
 }
 function initializeHomePage(req,res){
-  let SQL = `SELECT collaborators,name,startdate,enddate FROM projects;`;
+  let SQL = `SELECT id, collaborators, name, description FROM projects;`;
   client.query(SQL)
     .then(result => {
       let cardbase = result.rows;
@@ -70,21 +71,30 @@ function initializeFormPage(req, res) {
 
 function initializeDashboardPage(req, res) {
   let SQL = `SELECT name, repo_url FROM projects
-              WHERE id=1;`;
-  client.query(SQL)
+              WHERE id=$1;`;
+  let values = [req.params.id];
+  client.query(SQL, values)
     .then (result => {
       let project = result.rows[0];
       let splitHubUser = project.repo_url.split('/')[3];
       let splitHubRepo = project.repo_url.split('/')[4];
-      let conString = `${startOfString}${splitHubUser}/${splitHubRepo}/issues`;
-      superagent.get(conString)
-        .then(data => {
-          let latestIssue = data.body.slice(0, 4);
-          console.log(latestIssue);
-          res.render('pages/dashboard', {latestIssue});
-        });
+      let conString = `${startOfString}${splitHubUser}/${splitHubRepo}`;
+      Promise.all([
+        superagent.get(`${conString}/issues`),
+        superagent.get(`${conString}/commits`)
+      ]).then(([issues, commits]) => {
+        let latestIssue = issues.body.slice(0, 4);
+        let latestCommit = commits.body.slice(0, 4);
+        res.render('pages/dashboard', {latestIssue, latestCommit});
+      });
     });
+  // .catch(throwError(res));
 }
+
+function initializeAboutPage(req, res) {
+  res.render('pages/about');
+}
+
 //How To Hit The API: A guide by Diego Ramos
 /* 1. hit postman for the call you're gonna emulate and look at the object. Everything hinges on what you get from superagent's get, and the postman call emulates that.
    2. grab relevant github repo with an SQL query if you need it. throw it into superagent with any extra parts appended onto the string.
@@ -127,9 +137,15 @@ function githubPostToBase(req, res) {
   console.log(conString); */
   /* superagent.get(conString)
     .then(data => { */
-  let SQL = `INSERT INTO projects(collaborators,name,startdate,enddate,github_repo)
-  VALUES ($1,$2,$3,$4,$5);`;
-  let values = [req.body.collaborators, req.body.project_name, req.body.start_date, req.body.due_date, req.body.github_repo];
+  let SQL = `INSERT INTO projects(collaborators ,name, startdate, enddate, repo_url, description)
+  VALUES ($1, $2, $3, $4, $5, $6);`;
+  let values = [
+    req.body.collaborators,
+    req.body.project_name,
+    req.body.start_date,
+    req.body.due_date,
+    req.body.github_repo,
+    req.body.description];
   client.query(SQL, values);
   res.render('pages/success');
 /* }); */
@@ -152,6 +168,7 @@ app.listen(PORT, () => console.log(`server hath started on port ${PORT}`));
 // githubHit(sampleRequest, 0);
 
 //githubPostToBase(sampleRequest, 0);
+
 
 // Create a PDF file function
 function makePDF(req, res) {
@@ -183,3 +200,4 @@ function makePDF(req, res) {
         });
     });
 }
+
