@@ -1,13 +1,19 @@
 * {
+  /* background-color: rgb(141, 124, 166);
+  color: rgb(34, 19, 55);
+  font-family: Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  border-radius: 5px; */
   background-color: rgb(141, 124, 166);
   color: rgb(34, 19, 55);
   font-family: Helvetica, Arial, sans-serif;
   box-sizing: border-box;
   border-radius: 5px;
+  margin: 0 auto;
 }
 
 h1 {
-  font-size: 3.5em;
+  font-size: 1.5em;
   text-align: center;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: bolder;
@@ -16,21 +22,25 @@ h1 {
   border-radius: 0px !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-shadow: 2px 2px rgba(0, 0, 0, 0.7);
-  padding: 20px 0;
+  padding: 10px 0;
   margin: 0;
 }
 
 h2 {
-  font-size: 3em;
+  font-size: 1.5em;
   display: block;
   text-shadow: 2px 2px rgba(85, 52, 123, .5);
 }
 
 h3 {
-  font-size: 2em;
+  /* font-size: 2em;
   color: rgb(205, 213, 298);
   text-shadow: 2px 2px 10px rgb(85, 52, 123);
-  padding-top: 20px;
+  padding-top: 20px; */
+  font-size: 1.5em;
+  color: rgb(205, 213, 298);
+  text-shadow: 2px 2px 10px rgb(85, 52, 123);
+  padding-top: .75em;
 }
 
 header {
@@ -94,11 +104,17 @@ input {
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   min-height: 275px;
   width: 99%;
   background-color: rgb(3, 169, 209);
   margin: 20px 0 15px 0;
+  position: relative; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  min-height: 295px;
+  width: 99%;
+  background-color: rgb(3, 169, 209);
+  margin: 1em 0;
   position: relative;
 }
 
@@ -112,26 +128,39 @@ input {
 }
 
 .collab {
+  /* font-style: italic;
+  font-size: .75em;
+  margin: 8px 0; */
   font-style: italic;
   font-size: .75em;
-  margin: 8px 0;
+  margin-top: .75em;
 }
 
 .desc {
-  text-align: justify;
+  /* text-align: justify;
   padding: 0 10px;
-  margin: 10% 0;
+  margin: 10% 0; */
+  text-align: center;
+  padding: 0 .5em;
+  margin: 1em 0;
 }
 
 .project-link {
-  width: 200px;
+  /* width: 200px;
   height: 50px;
   background-color: rgb(34, 19, 55);
   position: absolute;
   bottom: 25px;
   left: 23%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 8px;
+  border-radius: 8px; */
+  width: 12em;
+  height: 2.5em;
+  background-color: rgb(34, 19, 55);
+  margin: 0 auto;
+  padding-top: .04em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: .25em;
 }
 
 .project-link > a {
@@ -156,39 +185,59 @@ input {
 }
 
 #new-project {
-  width: 100%;
+  /* width: 100%;
   position: relative;
   height: 150px;
   display: block;
+  background-color: rgb(183, 31, 150);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 40px; */
+  width: 100%;
+  height: 7em;
   background-color: rgb(183, 31, 150);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 40px;
 }
 
 #new-project > h2 {
-  background-color: rgb(183, 31, 150);
+  /* background-color: rgb(183, 31, 150);
   padding: 20px;
-  margin: 0;
+  margin: 0; */
+  background-color: rgb(183, 31, 150);
+  padding: .75em 1em .25em 1em;
 }
 
 .new-button {
-  width: 200px;
+  /* width: 200px;
   height: 50px;
   background-color: rgb(34, 19, 55);
   position: absolute;
   bottom: 20px;
   left: 23%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 8px;
+  border-radius: 8px; */
+  width: 12em;
+  height: 2.5em;
+  background-color: rgb(34, 19, 55);
+  margin: 0 auto;
+  padding-top: .04em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: .25em;
 }
 
 .new-button > a {
-  display: block;
+  /* display: block;
   margin: 17px 0;
   background-color: transparent;
   color: rgb(205, 213, 298);
-  letter-spacing: 2px;
+  letter-spacing: 2px; */
+  display: block;
+  margin: .75em 0;
+  background-color: transparent;
+  color: rgb(205, 213, 298);
+  letter-spacing: .1em;
 }
+
 .new-button:hover {
   background-color: rgb(3, 169, 209);
 }
