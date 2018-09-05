@@ -9,7 +9,11 @@
   <main>
     <button>Stand Up!</button>
       <div>
-        <p>Project issues: <a href="<%= latestIssue.html_url %>"><%= latestIssue.html_url %></a></p>
+        <p>Project issues: </p>
+        <% latestIssue.forEach(issue => { %>
+          <p><a href='<%=issue.html_url %>'><%=issue.html_url %></a></p>
+        <%}) %>
+        
       </div>
       <div>
         <p>Project commits:</p>

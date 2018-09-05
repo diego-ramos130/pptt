@@ -45,12 +45,17 @@ function initializeDashboardPage(req, res) {
       let conString = `${startOfString}${splitHubUser}/${splitHubRepo}/issues`;
       superagent.get(conString)
         .then(data => {
-          let latestIssue = data.body.filter((issue, i) => {i < 5});
+          let latestIssue = data.body.slice(0, 4);
+          console.log(latestIssue);
           res.render('pages/dashboard', {latestIssue});
         });
     });
 }
-
+//How To Hit The API: A guide by Diego Ramos
+/* 1. hit postman for the call you're gonna emulate and look at the object. Everything hinges on what you get from superagent's get, and the postman call emulates that.
+   2. grab relevant github repo with an SQL query if you need it. throw it into superagent with any extra parts appended onto the string.
+   3. put the information you need from the superagent get into a variable. map/reduce/filter/slice what elements you need out of it, and put all the necessary stuff in there.
+   4. pass it to be rendered in your response.render statement as an object, ie {data}. */
 function throwError(response, err) {
   console.error(err);
   response.render('pages/sqlerror');
