@@ -10,11 +10,22 @@ const superagent = require('superagent');
 const startOfString = 'https://api.github.com/repos/';
 client.connect();
 
+// Additional requirements for utilizing node-html-pdf
+const fs = require('fs');
+const pdf = require('html-pdf');
+var options = {
+  format : 'Letter',
+  base : 'http://p2t2.herokuapp.com/' };
+const ejs = require('ejs');
+// End of additional requirements for node-html-pdf
+
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 app.post('/form/complete', githubPostToBase);
+app.get('/testertons', test);
+app.post('/testertons', testBump);
 app.get('/form', initializeFormPage);
 app.get('/dashboard', initializeDashboardPage);
 app.get('/about', initializeAboutPage);
@@ -22,6 +33,29 @@ app.get('/', initializeHomePage);
 app.get('/', githubHit); //put data into input fields here
 //app.post('', githubPostToBase); //take data out of input fields here and post to database. render accordingly
 
+function testBump(req,res){
+  let SQL = 'INSERT INTO events(project_id,title,startdate,enddate,description) VALUES($1,$2,$3,$4,$5);';
+  let values = [req.body.project_id, req.body.name, req.body.startdate, req.body.enddate,req.body.descript];
+  client.query(SQL, values)
+    .then(() => {
+      let SQL = 'SELECT * FROM events WHERE project_id=$1;';
+      values = [req.body.project_id];
+      client.query(SQL,values)
+        .then(result =>{
+          let eventsFromServer = result.rows;
+          res.render('pages/test', eventsFromServer);
+        })
+    });
+}
+function test(req,res){
+  let SQL= 'SELECT * FROM events WHERE project_id=7;';
+  client.query(SQL)
+    .then(result => {
+      console.log(result.rows);
+      let eventsFromServer = result.rows;
+      res.render('pages/test', {eventsFromServer});
+    })
+}
 function initializeHomePage(req,res){
   let SQL = `SELECT collaborators,name,startdate,enddate FROM projects;`;
   client.query(SQL)
@@ -124,3 +158,34 @@ app.listen(PORT, () => console.log(`server hath started on port ${PORT}`));
 // githubHit(sampleRequest, 0);
 
 //githubPostToBase(sampleRequest, 0);
+
+// Create a PDF file function
+function makePDF(req, res) {
+  let SQL = `SELECT name, repo_url FROM projects
+              WHERE id=1;`;
+  client.query(SQL)
+    .then (result => {
+      let project = result.rows[0];
+      let splitHubUser = project.repo_url.split('/')[3];
+      let splitHubRepo = project.repo_url.split('/')[4];
+      let conString = `${startOfString}${splitHubUser}/${splitHubRepo}/issues`;
+      superagent.get(conString)
+        .then(data => {
+          let latestIssue = data.body.slice(0, 4);
+          let html;
+          ejs.renderFile('./views/pages/dashboard.ejs', {latestIssue}, function(err, res) {
+            if(res) {
+              html = res;
+              console.log(html);
+            }
+            else {
+              console.log(err);
+            }
+          });
+          pdf.create(html, options).toFile(function(err, res) {
+            if (err) return console.log(err);
+            console.log(res);
+          });
+        });
+    });
+}
