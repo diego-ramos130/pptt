@@ -10,17 +10,26 @@ const superagent = require('superagent');
 const startOfString = 'https://api.github.com/repos/';
 client.connect();
 
+
+
+
+
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 app.post('/form/complete', githubPostToBase);
+app.get('/testertons', test);
 app.get('/form', initializeFormPage);
 app.get('/dashboard', initializeDashboardPage);
 app.get('/', initializeHomePage);
 app.get('/', githubHit); //put data into input fields here
 //app.post('', githubPostToBase); //take data out of input fields here and post to database. render accordingly
 
+
+function test(req,res){
+  res.render('pages/test');
+}
 function initializeHomePage(req,res){
   let SQL = `SELECT collaborators,name,startdate,enddate FROM projects;`;
   client.query(SQL)
