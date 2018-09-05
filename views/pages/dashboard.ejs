@@ -3,13 +3,15 @@
   <%- include ../partials/head %>
 </head>
 <body>
-  <header>
     <%- include ../partials/nav %>
-  </header>
   <main>
     <button>Stand Up!</button>
       <div>
-        <p>Project issues:</p>
+        <p>Project issues: </p>
+        <% latestIssue.forEach(issue => { %>
+          <p><a href='<%=issue.html_url %>'><%=issue.html_url %></a></p>
+        <%}) %>
+        
       </div>
       <div>
         <p>Project commits:</p>

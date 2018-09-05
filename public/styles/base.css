@@ -222,6 +222,16 @@ button:hover {
   width: 100%;
 }
 
-.form-input {
-  margin-bottom: 20px;
+/******* FOOTER STYLES *******/
+footer {
+  background-color: rgb(85, 52, 123);
+  border-radius: 0;
+  bottom: 0;
+  color: rgb(205, 213, 298);
+  height: 2em;
+  left: 0;
+  padding: .5em;
+  position: fixed;
+  text-align: center;
+  width: 100%;
 }
