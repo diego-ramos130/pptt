@@ -18,8 +18,8 @@ form > button {
 
 button {
   background-color: black;
-  color: white;
   border-radius: 3px;
+  color: white;
   padding: 5px 20px;
   transition: 350ms all;
 }
@@ -38,8 +38,8 @@ label {
 }
 
 #form-card {
-  width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
 }
 
 #form-card * {
@@ -47,17 +47,17 @@ label {
 }
 
 button {
-  background-image: -webkit-linear-gradient(top, rgb(183, 31, 150), rgb(85, 52, 123));
-  background-image: -moz-linear-gradient(top, rgb(183, 31, 150), rgb(85, 52, 123));
   background-image: linear-gradient(to bottom, rgb(183, 31, 150), rgb(85, 52, 123));
+  background-image: -moz-linear-gradient(top, rgb(183, 31, 150), rgb(85, 52, 123));
+  background-image: -webkit-linear-gradient(top, rgb(183, 31, 150), rgb(85, 52, 123));
   height: 50px;
   width: 75% !important;
 }
 button:hover {
   background: #2079b0;
-  background-image: -webkit-linear-gradient(top, #2079b0, #eb94d0);
-  background-image: -moz-linear-gradient(top, #2079b0, #eb94d0);
   background-image: linear-gradient(to bottom, #2079b0, #eb94d0);
+  background-image: -moz-linear-gradient(top, #2079b0, #eb94d0);
+  background-image: -webkit-linear-gradient(top, #2079b0, #eb94d0);
 }
 
 /****** ABOUT US ******/
@@ -68,13 +68,15 @@ button:hover {
 
 .about-name {
   display: inline-block;
-  text-orientation: mixed;
-  writing-mode: vertical-rl;
   transform: rotate(-180deg);
+  text-orientation: mixed;
+  text-shadow: 1px 1px teal;
+  writing-mode: vertical-rl;
 }
 
 figcaption {
   font-size: .85em;
+  text-shadow: 1px 1px rgb(183, 31, 150)
 }
 
 section > ul {
@@ -88,4 +90,12 @@ section > ul > li {
 .connect-links {
   height: 1.5em;
   width: 1.5em;
+}
+
+.wrapper {
+  border: 2px solid teal;
+  height: 277px;
+  margin-bottom: 2em;
+  padding-top: 14px;
+  width: 280px;
 }
