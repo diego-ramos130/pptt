@@ -27,6 +27,7 @@ app.post('/form/complete', githubPostToBase);
 app.get('/testertons', test);
 app.post('/testertons', testBump);
 app.get('/form', initializeFormPage);
+app.get('/dashboard', initializeDashboardPage);
 app.get('/dashboard/:id', initializeDashboardPage);
 app.get('/about', initializeAboutPage);
 app.get('/', initializeHomePage);
@@ -89,6 +90,10 @@ function initializeDashboardPage(req, res) {
       });
     });
   // .catch(throwError(res));
+}
+
+function initializeAboutPage(req, res) {
+  res.render('pages/about');
 }
 
 function initializeAboutPage(req, res) {

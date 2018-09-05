@@ -1,41 +1,42 @@
 * {
   background-color: rgb(141, 124, 166);
+  border-radius: 5px;
+  box-sizing: border-box;
   color: rgb(34, 19, 55);
   font-family: Helvetica, Arial, sans-serif;
-  box-sizing: border-box;
-  border-radius: 5px;
+  margin: 0 auto;
 }
 
 h1 {
-  font-size: 3.5em;
-  text-align: center;
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: bolder;
-  font-variant: small-caps;
-  color: rgb(205, 213, 298);
   border-radius: 0px !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-shadow: 2px 2px rgba(0, 0, 0, 0.7);
-  padding: 20px 0;
+  color: rgb(205, 213, 298);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.5em;
+  font-weight: bolder;
+  font-variant: small-caps;
   margin: 0;
+  padding: 10px 0;
+  text-align: center;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.7);
 }
 
 h2 {
-  font-size: 3em;
+  font-size: 1.5em;
   display: block;
   text-shadow: 2px 2px rgba(85, 52, 123, .5);
 }
 
 h3 {
-  font-size: 2em;
   color: rgb(205, 213, 298);
+  font-size: 1.5em;
+  padding-top: .75em;
   text-shadow: 2px 2px 10px rgb(85, 52, 123);
-  padding-top: 20px;
 }
 
 header {
-  width: 100%;
   top: 0;
+  width: 100%;
 }
 
 header > * {
@@ -43,30 +44,25 @@ header > * {
 }
 
 nav {
-  width: 375px;
   background-color: transparent;
-  visibility: hidden;
   height: 50px;
   padding-top: 20px;
-}
-
-header:hover nav {
-  visibility: visible;
+  width: 375px;
 }
 
 nav > ul {
-  width: 100%;
-  margin: 0;
-  display: block;
-  list-style: none;
-  padding: 0;
+  font-size: .75em
 }
 
 nav > ul > li {
   display: inline-block;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin: 0 2%;
   text-transform: uppercase;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.nav-style:hover {
+  text-decoration: underline;
 }
 
 a {
@@ -79,27 +75,23 @@ label {
 }
 
 input {
-  height: 30px;
   border: 2px solid rgba(85, 52, 123, .5);
   caret-color: rgb(183, 31, 150);
+  height: 30px;
   padding: 5px;
 }
 
 .content-wrap {
-  width: 375px;
-  margin-left: auto;
-  margin-right: auto;
-  color: white;
   text-align: center;
+  width: 90%;
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  min-height: 275px;
-  width: 99%;
   background-color: rgb(3, 169, 209);
-  margin: 20px 0 15px 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding-bottom: 1em;
   position: relative;
+  margin: 1em 0;
 }
 
 .card > * {
@@ -112,35 +104,33 @@ input {
 }
 
 .collab {
-  font-style: italic;
   font-size: .75em;
-  margin: 8px 0;
+  font-style: italic;
+  margin-top: .75em;
 }
 
 .desc {
-  text-align: justify;
-  padding: 0 10px;
-  margin: 10% 0;
+  margin: 1em 0;
+  padding: 0 .5em;
+  text-align: center;
 }
 
 .project-link {
-  width: 200px;
-  height: 50px;
   background-color: rgb(34, 19, 55);
-  position: absolute;
-  bottom: 25px;
-  left: 23%;
+  border-radius: .25em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 8px;
+  height: 35%;
+  margin: 0 auto;
+  padding-top: .04em;
+  width: 50%;
 }
 
 .project-link > a {
-  display: block;
-  margin: 17px 0;
   background-color: transparent;
   color: rgb(205, 213, 298);
-  letter-spacing: 2px;
-  height: 15px;
+  display: block;
+  letter-spacing: .1em;
+  margin: .75em 0;
 }
 
 .project-link:hover {
@@ -156,70 +146,38 @@ input {
 }
 
 #new-project {
-  width: 100%;
-  position: relative;
-  height: 150px;
-  display: block;
   background-color: rgb(183, 31, 150);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 7em;
   margin-bottom: 40px;
+  width: 100%;
 }
 
 #new-project > h2 {
   background-color: rgb(183, 31, 150);
-  padding: 20px;
-  margin: 0;
+  padding: .75em 1em .25em 1em;
 }
 
 .new-button {
-  width: 200px;
-  height: 50px;
   background-color: rgb(34, 19, 55);
-  position: absolute;
-  bottom: 20px;
-  left: 23%;
+  border-radius: .25em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 8px;
+  height: 35%;
+  margin: 0 auto;
+  padding-top: .04em;
+  width: 50%;
 }
 
 .new-button > a {
-  display: block;
-  margin: 17px 0;
   background-color: transparent;
   color: rgb(205, 213, 298);
-  letter-spacing: 2px;
+  display: block;
+  letter-spacing: .1em;
+  margin: .75em 0;
 }
+
 .new-button:hover {
   background-color: rgb(3, 169, 209);
-}
-
-/******* FORM STYLES *******/
-#form-card {
-  width: 100%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-#form-card * {
-  background-color: rgb(3, 169, 209);
-}
-
-button {
-  background-image: -webkit-linear-gradient(top, rgb(183, 31, 150), rgb(85, 52, 123));
-  background-image: -moz-linear-gradient(top, rgb(183, 31, 150), rgb(85, 52, 123));
-  background-image: linear-gradient(to bottom, rgb(183, 31, 150), rgb(85, 52, 123));
-  height: 50px;
-  width: 75% !important;
-}
-button:hover {
-  background: #2079b0;
-  background-image: -webkit-linear-gradient(top, #2079b0, #eb94d0);
-  background-image: -moz-linear-gradient(top, #2079b0, #eb94d0);
-  background-image: linear-gradient(to bottom, #2079b0, #eb94d0);
-}
-
-.form-styles {
-  padding: 20px;
-  width: 100%;
 }
 
 /******* FOOTER STYLES *******/
@@ -234,4 +192,8 @@ footer {
   position: fixed;
   text-align: center;
   width: 100%;
+}
+
+.floating-empty-div-for-footer-spacing {
+  margin-top: 3em;
 }

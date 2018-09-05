@@ -1,3 +1,4 @@
+/* ***** FORM STYLES ***** */
 form > div {
   margin-top: .5em;
   width: 50%;
@@ -16,14 +17,99 @@ form > button {
 }
 
 button {
-    background-color: black;
-    color: white;
-    border-radius: 3px;
-    padding: 5px 20px;
-    transition: 350ms all;
+  background-color: black;
+  border-radius: 3px;
+  color: white;
+  padding: 5px 20px;
+  transition: 350ms all;
 }
 
 button:hover {
   background-color: rgb(183, 31, 150);
+}
+
+.form-styles {
+  padding: 20px;
+  width: 100%;
+}
+
+label {
+  font-weight: bold;
+}
+
+#form-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
+}
+
+#form-card * {
+  background-color: rgb(3, 169, 209);
+}
+
+button {
+  background-image: linear-gradient(to bottom, rgb(183, 31, 150), rgb(85, 52, 123));
+  background-image: -moz-linear-gradient(top, rgb(183, 31, 150), rgb(85, 52, 123));
+  background-image: -webkit-linear-gradient(top, rgb(183, 31, 150), rgb(85, 52, 123));
+  height: 50px;
+  width: 75% !important;
+}
+button:hover {
+  background: #2079b0;
+  background-image: linear-gradient(to bottom, #2079b0, #eb94d0);
+  background-image: -moz-linear-gradient(top, #2079b0, #eb94d0);
+  background-image: -webkit-linear-gradient(top, #2079b0, #eb94d0);
+}
+
+/****** ABOUT US ******/
+.about-images {
+  height: 200px;
+  width: 200px;
+}
+
+.about-name {
+  background-color: teal;
+  display: inline-block;
+  letter-spacing: .1em;
+  margin-bottom: 2em;
+  transform: rotate(-180deg);
+  text-orientation: mixed;
+  text-shadow: 1px 1px rgb(85, 52, 123);
+  writing-mode: vertical-rl;
+}
+
+figcaption {
+  background-color: teal;
+  letter-spacing: .1em;
+  margin-left: 1em;
+  text-shadow: 1px 1px rgb(183, 31, 150);
+}
+
+section > ul {
+  background-color: teal;
+  margin-bottom: 1em;
+}
+
+section > ul > li {
+  background-color: teal;
+  display: inline-block;
+}
+
+section > ul > li > a {
+  background-color: teal;
+}
+
+.connect-links {
+  background-color: teal;
+  height: 1.5em;
+  width: 1.5em;
+}
+
+.wrapper {
+  background-color: teal;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 277px;
+  margin-bottom: 2em;
+  padding-top: 14px;
+  width: 280px;
 }
 
