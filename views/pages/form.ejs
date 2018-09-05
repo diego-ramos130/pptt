@@ -13,16 +13,16 @@
     <div id="form-card">
       <form method="POST" action="/form/complete" class="card form-styles">
         <div class="form-input">
-          <label for="project-name">Project Name</label>
-          <input type="text" id="project_name" name="project_name" placeholder="Project Name.." autofocus>
+          <label for="project-name">Project Name:</label>
+          <input type="text" id="project_name" name="project_name" placeholder="Project Name..." autofocus>
         </div>
         <div class="form-input">
-          <label for="collaborators">Collaborators</label>
-          <input type="text" id="collaborators" name="collaborators" placeholder="Collaborators, separated by commas..">
+          <label for="collaborators">Collaborators:</label>
+          <input type="text" id="collaborators" name="collaborators" placeholder="Collaborators, separated by commas...">
         </div>
         <div class="form-input">
-          <label for="instructor-name">Instructor Name</label>
-          <input type="text" id="instructor_name" placeholder="Instructor Name..">
+          <label for="instructor-name">Description:</label>
+          <input type="text" id="description" name="description" placeholder="Project description...">
         </div>
         <div class="form-input">
           <label for="start-date">Enter your project start date:</label>
@@ -33,8 +33,8 @@
           <input type="date" id="due_date" name="due_date">
         </div>
         <div class="form-input">
-          <label for="github-repo">Github Repo</label>
-          <input type="github-repo" name="github_repo" placeholder="Github Repo..">
+          <label for="github-repo">Github Repo:</label>
+          <input type="github-repo" name="github_repo" placeholder="Github Repo.." required>
         </div>
         <button>Add Project!</button>
       </form>

@@ -7,14 +7,21 @@
   <main>
     <button>Stand Up!</button>
       <div>
-        <p>Project issues: </p>
-        <% latestIssue.forEach(issue => { %>
-          <p><a href='<%=issue.html_url %>'><%=issue.html_url %></a></p>
-        <%}) %>
+        <p>Latest issues: </p>
+        <%if (latestIssue.length > 0) { %>
+          <% latestIssue.forEach(issue => { %>
+            <p><a href='<%=issue.html_url %>'><%=issue.html_url %></a></p>
+            <%}) %>
+          <% } else { %>
+          <p>No issues!</p>
+          <% } %>
         
       </div>
       <div>
-        <p>Project commits:</p>
+        <p>Latest commits: </p>
+        <% latestCommit.forEach(commit => { %>
+          <p><a href='<%=commit.html_url %>'><%=commit.html_url %></a></p>
+        <%}) %>
       </div>
       <div>
         <p>Project checklist:</p>
