@@ -67,33 +67,47 @@ button:hover {
 }
 
 .about-name {
+  background-color: teal;
   display: inline-block;
+  letter-spacing: .1em;
+  margin-bottom: 2em;
   transform: rotate(-180deg);
   text-orientation: mixed;
-  text-shadow: 1px 1px teal;
+  text-shadow: 1px 1px rgb(85, 52, 123);
   writing-mode: vertical-rl;
 }
 
 figcaption {
+  background-color: teal;
   font-size: .85em;
-  text-shadow: 1px 1px rgb(183, 31, 150)
+  letter-spacing: .1em;
+  margin-left: 1em;
+  text-shadow: 1px 1px rgb(183, 31, 150);
 }
 
 section > ul {
+  background-color: teal;
   margin-bottom: 1em;
 }
 
 section > ul > li {
+  background-color: teal;
   display: inline-block;
 }
 
+section > ul > li > a {
+  background-color: teal;
+}
+
 .connect-links {
+  background-color: teal;
   height: 1.5em;
   width: 1.5em;
 }
 
 .wrapper {
-  border: 2px solid teal;
+  background-color: teal;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 277px;
   margin-bottom: 2em;
   padding-top: 14px;
