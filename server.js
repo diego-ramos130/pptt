@@ -17,6 +17,7 @@ app.use(express.static('./public'));
 app.post('/form/complete', githubPostToBase);
 app.get('/form', initializeFormPage);
 app.get('/dashboard', initializeDashboardPage);
+app.get('/about', initializeAboutPage);
 app.get('/', initializeHomePage);
 app.get('/', githubHit); //put data into input fields here
 //app.post('', githubPostToBase); //take data out of input fields here and post to database. render accordingly
@@ -51,6 +52,11 @@ function initializeDashboardPage(req, res) {
         });
     });
 }
+
+function initializeAboutPage(req, res) {
+  res.render('pages/about');
+}
+
 //How To Hit The API: A guide by Diego Ramos
 /* 1. hit postman for the call you're gonna emulate and look at the object. Everything hinges on what you get from superagent's get, and the postman call emulates that.
    2. grab relevant github repo with an SQL query if you need it. throw it into superagent with any extra parts appended onto the string.
