@@ -65,11 +65,12 @@ header:hover nav {
 }
 
 nav > ul {
-  width: 100%;
+  /* width: 100%;
   margin: 0;
   display: block;
   list-style: none;
-  padding: 0;
+  padding: 0; */
+  font-size: .75em
 }
 
 nav > ul > li {
@@ -96,10 +97,11 @@ input {
 }
 
 .content-wrap {
-  width: 375px;
+  /* width: 375px;
   margin-left: auto;
   margin-right: auto;
-  color: white;
+  color: white; */
+  width: 90%;
   text-align: center;
 }
 
@@ -111,11 +113,10 @@ input {
   margin: 20px 0 15px 0;
   position: relative; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  min-height: 295px;
-  width: 99%;
   background-color: rgb(3, 169, 209);
   margin: 1em 0;
   position: relative;
+  padding-bottom: 1em;
 }
 
 .card > * {
@@ -154,8 +155,8 @@ input {
   left: 23%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 8px; */
-  width: 12em;
-  height: 2.5em;
+  width: 50%;
+  height: 35%;
   background-color: rgb(34, 19, 55);
   margin: 0 auto;
   padding-top: .04em;
@@ -164,12 +165,17 @@ input {
 }
 
 .project-link > a {
-  display: block;
+  /* display: block;
   margin: 17px 0;
   background-color: transparent;
   color: rgb(205, 213, 298);
   letter-spacing: 2px;
-  height: 15px;
+  height: 15px; */
+  display: block;
+  margin: .75em 0;
+  background-color: transparent;
+  color: rgb(205, 213, 298);
+  letter-spacing: .1em;
 }
 
 .project-link:hover {
@@ -216,8 +222,8 @@ input {
   left: 23%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 8px; */
-  width: 12em;
-  height: 2.5em;
+  width: 50%;
+  height: 35%;
   background-color: rgb(34, 19, 55);
   margin: 0 auto;
   padding-top: .04em;
