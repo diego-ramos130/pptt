@@ -16,13 +16,43 @@ form > button {
 }
 
 button {
-    background-color: black;
-    color: white;
-    border-radius: 3px;
-    padding: 5px 20px;
-    transition: 350ms all;
+  background-color: black;
+  color: white;
+  border-radius: 3px;
+  padding: 5px 20px;
+  transition: 350ms all;
 }
 
 button:hover {
   background-color: rgb(183, 31, 150);
+}
+
+/****** ABOUT US ******/
+.about-images {
+  height: 200px;
+  width: 200px;
+}
+
+.about-name {
+  display: inline-block;
+  text-orientation: mixed;
+  writing-mode: vertical-rl;
+  transform: rotate(-180deg);
+  transform-origin: right, top;
+}
+
+.wrapper .text {
+  position: relative;
+  left: 0px;
+  margin-bottom: 1em;
+  text-align: justify;
+  visibility: hidden;
+}
+
+.wrapper:hover .text {
+visibility:visible;
+}
+
+.wrapper:focus .text {
+visibility:visible;
 }
