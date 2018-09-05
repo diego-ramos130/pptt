@@ -1,0 +1,28 @@
+form > div {
+  margin-top: .5em;
+  width: 50%;
+}
+
+div > input {
+  font-size: small;
+}
+
+form > div > input {
+  width: 100%;
+}
+
+form > button {
+  margin-top: 1em;
+}
+
+button {
+    background-color: black;
+    color: white;
+    border-radius: 3px;
+    padding: 5px 20px;
+    transition: 350ms all;
+}
+
+button:hover {
+  background-color: rgb(183, 31, 150);
+}
