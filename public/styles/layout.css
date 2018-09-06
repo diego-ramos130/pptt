@@ -1,4 +1,4 @@
-/* ***** FORM STYLES ***** */
+/****** FORM STYLES ***** */
 form > div {
   margin-top: .5em;
   width: 50%;
@@ -6,6 +6,7 @@ form > div {
 
 div > input {
   font-size: small;
+  height: 2em;
 }
 
 form > div > input {
@@ -43,7 +44,7 @@ label {
 }
 
 #form-card * {
-  background-color: rgb(3, 169, 209);
+  background-color:ghostwhite;
 }
 
 button {
@@ -67,49 +68,56 @@ button:hover {
 }
 
 .about-name {
-  background-color: teal;
+  background-color: rgb(3, 169, 209);
   display: inline-block;
+  font-size: 1.25em;
+  font-variant: small-caps;
+  font-weight: bold;
   letter-spacing: .1em;
-  margin-bottom: 2em;
   transform: rotate(-180deg);
   text-orientation: mixed;
-  text-shadow: 1px 1px rgb(85, 52, 123);
   writing-mode: vertical-rl;
 }
 
-figcaption {
-  background-color: teal;
-  letter-spacing: .1em;
-  margin-left: 1em;
-  text-shadow: 1px 1px rgb(183, 31, 150);
+.about-title {
+  background-color: rgb(3, 169, 209);
+  font-size: 1em;
+  font-variant: small-caps;
+  font-weight: 400;
+  padding: .5em 0;
+}
+
+.all-about-me {
+  background-color: rgb(3, 169, 209);
+  font-variant: small-caps;
+  padding: 1em;
 }
 
 section > ul {
-  background-color: teal;
-  margin-bottom: 1em;
+  background-color: rgb(3, 169, 209);
+  /* margin-bottom: 1em; */
 }
 
 section > ul > li {
-  background-color: teal;
+  background-color: rgb(3, 169, 209);
   display: inline-block;
 }
 
 section > ul > li > a {
-  background-color: teal;
+  background-color: rgb(3, 169, 209);
 }
 
 .connect-links {
-  background-color: teal;
+  background-color: rgb(3, 169, 209);
   height: 1.5em;
   width: 1.5em;
 }
 
 .wrapper {
-  background-color: teal;
+  background-color: rgb(3, 169, 209);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  height: 277px;
+  height:50%;
   margin-bottom: 2em;
-  padding-top: 14px;
-  width: 280px;
+  padding-top: .5em;
+  width: 90%;
 }
-
