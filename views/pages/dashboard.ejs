@@ -49,10 +49,7 @@
       <div id='calendar'></div>
       <div id='add-sum-stuff'>
         <form action="/dashboard/<%= id %>" method='POST'>
-          <input name='project_id' type=hidden value="<%=id%>">
-          <input name='latestIssue' type=hidden value="<%- JSON.stringify(latestIssue)%>">
-          <input name='latestCommit' type=hidden value="<%- JSON.stringify(latestCommit)%>">
-          <input name='eventList' type=hidden value="<- JSON.stringify(eventList)%>"
+          <input name="project_id" type="hidden" value="<%=id%>">
           <label for="name">Name of Project</label>
           <input name='name' type='text'>
           <label for='start'>Start Date</label>
@@ -61,7 +58,7 @@
           <input name='end' type='date'>
           <label for='description'>Description</label>
           <input name='description' type='textarea'>
-          <button>Submit that shit fool</button>
+          <button>Submit</button>
         </form>
       </div>
   </main>

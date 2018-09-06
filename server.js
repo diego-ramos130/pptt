@@ -9,8 +9,6 @@ const app = express();
 const client = new pg.Client(process.env.DATABASE_URL);
 const superagent = require('superagent');
 const startOfString = 'https://api.github.com/repos/';
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-var xhr = new XMLHttpRequest();
 client.connect();
 
 
