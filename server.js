@@ -46,7 +46,7 @@ function testBump(req,res){
     .then(() => {
       let SQL = 'SELECT * FROM events WHERE project_id=$1;';
       values = [req.body.project_id];
-      client.query(SQL,values)
+      client.query(SQL, values)
         .then(result =>{
           let eventsFromServer = result.rows;
           res.render('pages/test', eventsFromServer);
