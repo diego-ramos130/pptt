@@ -51,7 +51,8 @@ function testBump(req,res){
   let values = [req.body.project_id, req.body.name, req.body.start, req.body.end,req.body.description];
   client.query(SQL, values)
     .then(() => {
-      $.get(`dashboard/${req.body.project_id}`);
+      console.log($);
+      // $.get(`dashboard/${req.body.project_id}`);
     });  
 }
 /* function test(req,res){

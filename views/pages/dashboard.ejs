@@ -50,8 +50,9 @@
       <div id='add-sum-stuff'>
         <form action="/dashboard/<%= id %>" method='POST'>
           <input name='project_id' type=hidden value="<%=id%>">
-          <input name='latestIssue' type=hidden value="<%=latestIssue%>">
-          <input name='latestCommit' type=hidden value="<%=latestCommit%>">
+          <input name='latestIssue' type=hidden value="<%- JSON.stringify(latestIssue)%>">
+          <input name='latestCommit' type=hidden value="<%- JSON.stringify(latestCommit)%>">
+          <input name='eventList' type=hidden value="<- JSON.stringify(eventList)%>"
           <label for="name">Name of Project</label>
           <input name='name' type='text'>
           <label for='start'>Start Date</label>
