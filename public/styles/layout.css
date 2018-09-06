@@ -6,6 +6,7 @@ form > div {
 
 div > input {
   font-size: small;
+  height: 2em;
 }
 
 form > div > input {
@@ -43,7 +44,7 @@ label {
 }
 
 #form-card * {
-  background-color:lightgray;
+  background-color:ghostwhite;
 }
 
 button {
@@ -86,11 +87,10 @@ button:hover {
   padding: .5em 0;
 }
 
-figcaption {
+.all-about-me {
   background-color: rgb(3, 169, 209);
-  letter-spacing: .1em;
-  margin-left: 1em;
-  text-shadow: 1px 1px rgb(183, 31, 150);
+  font-variant: small-caps;
+  padding: 1em;
 }
 
 section > ul {
@@ -116,9 +116,8 @@ section > ul > li > a {
 .wrapper {
   background-color: rgb(3, 169, 209);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  height: 310px;
+  height:50%;
   margin-bottom: 2em;
   padding-top: .5em;
-  width: 280px;
+  width: 90%;
 }
-

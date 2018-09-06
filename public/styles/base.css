@@ -11,7 +11,7 @@
 h1 {
   border-radius: 0px !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  color: lightgray;;
+  color: ghostwhite;;
   font-family: Helvetica, Arial, sans-serif;
   font-size: xx-large;
   font-weight: bolder;
@@ -29,7 +29,7 @@ h2 {
 }
 
 h3 {
-  color: lightgray;
+  color: ghostwhite;
   font-size: 1.5em;
   padding-top: .75em;
   text-shadow: 2px 2px 10px rgb(85, 52, 123);
@@ -128,7 +128,7 @@ input {
 
 .project-link > a {
   background-color: transparent;
-  color: lightgray;
+  color: ghostwhite;
   display: block;
   letter-spacing: .1em;
   margin: .75em 0;
@@ -147,7 +147,7 @@ input {
 }
 
 #new-project {
-  background-color: lightgray;
+  background-color: ghostwhite;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 7em;
   margin-bottom: 1.5em;
@@ -155,7 +155,7 @@ input {
 }
 
 #new-project > h2 {
-  background-color: lightgray;
+  background-color: ghostwhite;
   padding: .75em 1em .25em 1em;
 }
 
@@ -196,5 +196,5 @@ footer {
 }
 
 .floating-empty-div-for-footer-spacing {
-  margin-top: 3em;
+  margin-top: 6em;
 }

@@ -19,7 +19,7 @@
           <% cardbase.forEach(card => {%>
 
             <div class="card">
-              <h3><%= card.name %></h3> 
+              <h3><%= card.name %></h3>
               <% let collabs = card.collaborators.split(',') %>
               <% collabs.forEach(collab => {%>
                 <p class="collab"><%= collab %></p>
@@ -32,6 +32,7 @@
 
           <% }) %>
 
+<!-- CAN BE DELETED!!
           <div class="card">
             <h3>Project One (static)</h3>
             <p class="collab">Chillaborator #a1</p>
@@ -63,7 +64,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </main>
     <%- include ../partials/footer %>
   </body>
