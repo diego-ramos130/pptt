@@ -47,18 +47,12 @@ function initializeFormPage(req, res) {
 }
 
 function testBump(req,res){
-  let SQL = 'INSERT INTO events(project_id,title,startdate,enddate,description) VALUES($1,$2,$3,$4,$5);';
-  let values = [req.body.project_id, req.body.name, req.body.startdate, req.body.enddate,req.body.descript];
+  let SQL = 'INSERT INTO events(project_id,title,start,"end",description) VALUES($1,$2,$3,$4,$5);';
+  let values = [req.body.project_id, req.body.name, req.body.start, req.body.end,req.body.description];
   client.query(SQL, values)
     .then(() => {
-      let SQL = 'SELECT * FROM events WHERE project_id=$1;';
-      values = [req.body.project_id];
-      client.query(SQL,values)
-        .then(result =>{
-          let eventsFromServer = result.rows;
-          res.render('pages/dashboard', eventsFromServer);
-        });
-    });
+      $.get(`dashboard/${req.body.project_id}`);
+    });  
 }
 /* function test(req,res){
   .then(result => {
@@ -70,26 +64,25 @@ function testBump(req,res){
 function initializeDashboardPage(req, res) {
   let SQL = `SELECT name, repo_url FROM projects
   WHERE id=$1;`;
+  let id = req.params.id;
   let values = [req.params.id];
-  let SQLcal= 'SELECT * FROM events WHERE project_id=$1;';
+  let SQLcal= 'SELECT title, start, "end", description FROM events WHERE project_id=$1;';
   Promise.all([
     client.query(SQL, values),
     client.query(SQLcal, values),
   ]) .then(([projectsData, eventsData]) => {
     let project = projectsData.rows[0];
-    let eventList = eventsData.fields;
+    let eventList = eventsData.rows;
     let splitHubUser = project.repo_url.split('/')[3];
     let splitHubRepo = project.repo_url.split('/')[4];
     let conString = `${startOfString}${splitHubUser}/${splitHubRepo}`;
     Promise.all([
       superagent.get(`${conString}/issues`),
       superagent.get(`${conString}/commits`),
-      console.log('made it in after commits')
     ]).then(([issues, commits]) => {
-      console.log('got out of the second promise');
       let latestIssue = issues.body.slice(0,5);
       let latestCommit = commits.body.slice(0,5);
-      res.render('pages/dashboard', { latestIssue, latestCommit, eventList});
+      res.render('pages/dashboard', { latestIssue, latestCommit, eventList, id});
     });
   });
 }
