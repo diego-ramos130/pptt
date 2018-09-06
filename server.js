@@ -1,6 +1,7 @@
 
 'use strict';
 require('dotenv').config();
+const $ = require('jquery');
 const pg = require('pg');
 const express = require('express');
 const PORT = process.env.PORT;
@@ -24,39 +25,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 app.post('/form/complete', githubPostToBase);
-app.get('/testertons', test);
-app.post('/testertons', testBump);
 app.get('/form', initializeFormPage);
-app.get('/dashboard', initializeDashboardPage);
 app.get('/dashboard/:id', initializeDashboardPage);
+app.post('/dashboard/:id', testBump);
 app.get('/about', initializeAboutPage);
 app.get('/', initializeHomePage);
 app.get('/', githubHit); //put data into input fields here
 //app.post('', githubPostToBase); //take data out of input fields here and post to database. render accordingly
 
-function testBump(req,res){
-  let SQL = 'INSERT INTO events(project_id,title,startdate,enddate,description) VALUES($1,$2,$3,$4,$5);';
-  let values = [req.body.project_id, req.body.name, req.body.startdate, req.body.enddate,req.body.descript];
-  client.query(SQL, values)
-    .then(() => {
-      let SQL = 'SELECT * FROM events WHERE project_id=$1;';
-      values = [req.body.project_id];
-      client.query(SQL,values)
-        .then(result =>{
-          let eventsFromServer = result.rows;
-          res.render('pages/test', eventsFromServer);
-        })
-    });
-}
-function test(req,res){
-  let SQL= 'SELECT * FROM events WHERE project_id=7;';
-  client.query(SQL)
-    .then(result => {
-      console.log(result.rows);
-      let eventsFromServer = result.rows;
-      res.render('pages/test', {eventsFromServer});
-    })
-}
 function initializeHomePage(req,res){
   let SQL = `SELECT id, collaborators, name, description FROM projects;`;
   client.query(SQL)
@@ -70,16 +46,55 @@ function initializeFormPage(req, res) {
   res.render('pages/form');
 }
 
+function testBump(req,res){
+  let SQL = 'INSERT INTO events(project_id,title,startdate,enddate,description) VALUES($1,$2,$3,$4,$5);';
+  let values = [req.body.project_id, req.body.name, req.body.startdate, req.body.enddate,req.body.descript];
+  client.query(SQL, values)
+    .then(() => {
+      let SQL = 'SELECT * FROM events WHERE project_id=$1;';
+      values = [req.body.project_id];
+      client.query(SQL,values)
+        .then(result =>{
+          let eventsFromServer = result.rows;
+          res.render('pages/dashboard', eventsFromServer);
+        });
+    });
+}
+/* function test(req,res){
+  .then(result => {
+    console.log(result.rows);
+    let parsed = result.rows;
+    res.render('pages/dashboard', {parsed});
+  })
+} */
 function initializeDashboardPage(req, res) {
   let SQL = `SELECT name, repo_url FROM projects
-              WHERE id=$1;`;
+  WHERE id=$1;`;
   let values = [req.params.id];
-  client.query(SQL, values)
-    .then (result => {
-      let project = result.rows[0];
-      let splitHubUser = project.repo_url.split('/')[3];
-      let splitHubRepo = project.repo_url.split('/')[4];
-      let conString = `${startOfString}${splitHubUser}/${splitHubRepo}`;
+  let SQLcal= 'SELECT * FROM events WHERE project_id=$1;';
+  Promise.all([
+    client.query(SQL, values),
+    client.query(SQLcal, values),
+  ]) .then(([projectsData, eventsData]) => {
+    let project = projectsData.rows[0];
+    let eventList = eventsData.fields;
+    let splitHubUser = project.repo_url.split('/')[3];
+    let splitHubRepo = project.repo_url.split('/')[4];
+    let conString = `${startOfString}${splitHubUser}/${splitHubRepo}`;
+    Promise.all([
+      superagent.get(`${conString}/issues`),
+      superagent.get(`${conString}/commits`),
+      console.log('made it in after commits')
+    ]).then(([issues, commits]) => {
+      console.log('got out of the second promise');
+      let latestIssue = issues.body.slice(0,5);
+      let latestCommit = commits.body.slice(0,5);
+      res.render('pages/dashboard', { latestIssue, latestCommit, eventList});
+    });
+  });
+}
+
+/*  .then (result => {
       Promise.all([
         superagent.get(`${conString}/issues`),
         superagent.get(`${conString}/commits`)
@@ -89,16 +104,12 @@ function initializeDashboardPage(req, res) {
         res.render('pages/dashboard', {latestIssue, latestCommit});
       });
     });
-  // .catch(throwError(res));
-}
+  // .catch(throwError(res)); */
 
 function initializeAboutPage(req, res) {
   res.render('pages/about');
 }
 
-function initializeAboutPage(req, res) {
-  res.render('pages/about');
-}
 
 //How To Hit The API: A guide by Diego Ramos
 /* 1. hit postman for the call you're gonna emulate and look at the object. Everything hinges on what you get from superagent's get, and the postman call emulates that.

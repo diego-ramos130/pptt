@@ -1,6 +1,8 @@
 <html>
 <head>
   <%- include ../partials/head %>
+  <%- include ../partials/scripts %>
+
 </head>
 <body>
     <%- include ../partials/nav %>
@@ -30,6 +32,35 @@
         <p>Upcoming meetings:</p>
       </div>
       <button>PDF CREATOR!</button>
+      <script>
+        $(function () {
+           let parse =  <%- JSON.stringify(eventList) %>
+           $('#calendar').fullCalendar({ 
+             defaultView: 'basicWeek',
+            header: { 
+              left: 'title', 
+              center: '', 
+              right: 'basicWeek,month prev,next'
+            },
+            events: parse
+          })
+        })
+        </script>
+      <div id='calendar'></div>
+      <div id='add-sum-stuff'>
+        <form action="/testertons/complete" method='POST'>
+          <input name='project_id' type=hidden>
+          <label for="name">Name of Project</label>
+          <input name='name' type='text'>
+          <label for='startdate'>Start Date</label>
+          <input name='startdate' type='date'>
+          <label for='enddate'>End Date</label>
+          <input name='enddate' type='date'>
+          <label for='descript'>Description</label>
+          <input name='descript' type='textarea'>
+          <button>Submit that shit fool</button>
+        </form>
+      </div>
   </main>
   <footer>
     insert footer partial here
