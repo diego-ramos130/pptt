@@ -1,6 +1,7 @@
 
 'use strict';
 require('dotenv').config();
+const $ = require('jquery');
 const pg = require('pg');
 const express = require('express');
 const PORT = process.env.PORT;
@@ -9,6 +10,8 @@ const client = new pg.Client(process.env.DATABASE_URL);
 const superagent = require('superagent');
 const startOfString = 'https://api.github.com/repos/';
 client.connect();
+
+
 
 // Additional requirements for utilizing node-html-pdf
 const fs = require('fs');
@@ -24,44 +27,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 app.post('/form/complete', githubPostToBase);
-app.get('/testertons', test);
-app.post('/testertons', testBump);
 app.get('/form', initializeFormPage);
-app.get('/dashboard', initializeDashboardPage);
 app.get('/dashboard/:id', initializeDashboardPage);
+app.post('/dashboard/:id', testBump);
 app.get('/about', initializeAboutPage);
 app.get('/', initializeHomePage);
 app.get('/', githubHit); //put data into input fields here
-//app.post('', githubPostToBase); //take data out of input fields here and post to database. render accordingly
 
-function testBump(req,res){
-  let SQL = 'INSERT INTO events(project_id, title, startdate, enddate, description) VALUES($1, $2, $3, $4, $5);';
-  let values = [
-    req.body.project_id,
-    req.body.name,
-    req.body.startdate,
-    req.body.enddate,
-    req.body.descript];
-  client.query(SQL, values)
-    .then(() => {
-      let SQL = 'SELECT * FROM events WHERE project_id=$1;';
-      values = [req.body.project_id];
-      client.query(SQL,values)
-        .then(result =>{
-          let eventsFromServer = result.rows;
-          res.render('pages/test', eventsFromServer);
-        });
-    });
-}
-function test(req,res){
-  let SQL= 'SELECT * FROM events WHERE project_id=7;';
-  client.query(SQL)
-    .then(result => {
-      console.log(result.rows);
-      let eventsFromServer = result.rows;
-      res.render('pages/test', {eventsFromServer});
-    });
-}
 function initializeHomePage(req,res){
   let SQL = `
   SELECT id, collaborators, name, description 
@@ -77,48 +49,51 @@ function initializeFormPage(req, res) {
   res.render('pages/form');
 }
 
+function testBump(req,res){
+  let SQL = 'INSERT INTO events(project_id,title,start,"end",description) VALUES($1,$2,$3,$4,$5);';
+  let values = [req.body.project_id, req.body.name, req.body.start, req.body.end,req.body.description];
+  client.query(SQL, values)
+    .then(() => {
+      res.redirect(`/dashboard/${req.body.project_id}`);
+    });
+}
+
 function initializeDashboardPage(req, res) {
   let SQL = `SELECT name, repo_url FROM projects
-              WHERE id=$1;`;
+  WHERE id=$1;`;
+  let id = req.params.id;
   let values = [req.params.id];
-  client.query(SQL, values)
-    .then (result => {
-      let project = result.rows[0];
-      let splitHubUser = project.repo_url.split('/')[3];
-      let splitHubRepo = project.repo_url.split('/')[4];
-      let conString = `${startOfString}${splitHubUser}/${splitHubRepo}`;
-      Promise.all([
-        superagent.get(`${conString}/issues`),
-        superagent.get(`${conString}/commits`)
-      ]).then(([issues, commits]) => {
-        let latestIssue = issues.body.slice(0, 5);
-        let latestCommit = commits.body.slice(0, 5);
-        res.render('pages/dashboard', {latestIssue, latestCommit});
-      });
+  let SQLcal= 'SELECT title, start, "end", description FROM events WHERE project_id=$1;';
+  Promise.all([
+    client.query(SQL, values),
+    client.query(SQLcal, values),
+  ]) .then(([projectsData, eventsData]) => {
+    let project = projectsData.rows[0];
+    let eventList = eventsData.rows;
+    let splitHubUser = project.repo_url.split('/')[3];
+    let splitHubRepo = project.repo_url.split('/')[4];
+    let conString = `${startOfString}${splitHubUser}/${splitHubRepo}`;
+    Promise.all([
+      superagent.get(`${conString}/issues`),
+      superagent.get(`${conString}/commits`),
+    ]).then(([issues, commits]) => {
+      let latestIssue = issues.body.slice(0,5);
+      let latestCommit = commits.body.slice(0,5);
+      res.render('pages/dashboard', { latestIssue, latestCommit, eventList, id});
     });
-  // .catch(throwError(res));
+  });
 }
 
 function initializeAboutPage(req, res) {
   res.render('pages/about');
 }
 
-function initializeAboutPage(req, res) {
-  res.render('pages/about');
-}
-
-//How To Hit The API: A guide by Diego Ramos
-/* 1. hit postman for the call you're gonna emulate and look at the object. Everything hinges on what you get from superagent's get, and the postman call emulates that.
-   2. grab relevant github repo with an SQL query if you need it. throw it into superagent with any extra parts appended onto the string.
-   3. put the information you need from the superagent get into a variable. map/reduce/filter/slice what elements you need out of it, and put all the necessary stuff in there.
-   4. pass it to be rendered in your response.render statement as an object, ie {data}. */
 function throwError(response, err) {
   console.error(err);
   response.render('pages/sqlerror');
 }
 
 function githubHit(req,res){
-// things that we can get from github api without an auth token: name of repo, url, open issues, issue name and link, date it's created, date of last push
   let endOfString = `${req.body.user}/${req.body.repo}`;
   let conString = startOfString + endOfString;
   superagent.get(conString)
@@ -147,8 +122,6 @@ function githubPostToBase(req, res) {
 app.use(express.static(__dirname + '/public'));
 app.use('*', (req, res) => res.render('pages/error'));
 app.listen(PORT, () => console.log(`server hath started on port ${PORT}`));
-
-//database initialization
 
 // Create a PDF file function
 function makePDF(req, res) {
