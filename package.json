@@ -30,6 +30,7 @@
     "nodemon": "^1.18.4",
     "pg": "^7.4.3",
     "phantomjs": "^2.1.7",
-    "superagent": "^3.8.3"
+    "superagent": "^3.8.3",
+    "xmlhttprequest": "^1.8.0"
   }
 }

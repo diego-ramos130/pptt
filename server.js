@@ -9,7 +9,11 @@ const app = express();
 const client = new pg.Client(process.env.DATABASE_URL);
 const superagent = require('superagent');
 const startOfString = 'https://api.github.com/repos/';
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var xhr = new XMLHttpRequest();
 client.connect();
+
+
 
 // Additional requirements for utilizing node-html-pdf
 const fs = require('fs');
@@ -51,9 +55,8 @@ function testBump(req,res){
   let values = [req.body.project_id, req.body.name, req.body.start, req.body.end,req.body.description];
   client.query(SQL, values)
     .then(() => {
-      console.log($);
-      // $.get(`dashboard/${req.body.project_id}`);
-    });  
+      res.redirect(`/dashboard/${req.body.project_id}`);
+    });
 }
 /* function test(req,res){
   .then(result => {
