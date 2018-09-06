@@ -35,8 +35,13 @@ app.get('/', githubHit); //put data into input fields here
 //app.post('', githubPostToBase); //take data out of input fields here and post to database. render accordingly
 
 function testBump(req,res){
-  let SQL = 'INSERT INTO events(project_id,title,startdate,enddate,description) VALUES($1,$2,$3,$4,$5);';
-  let values = [req.body.project_id, req.body.name, req.body.startdate, req.body.enddate,req.body.descript];
+  let SQL = 'INSERT INTO events(project_id, title, startdate, enddate, description) VALUES($1, $2, $3, $4, $5);';
+  let values = [
+    req.body.project_id,
+    req.body.name,
+    req.body.startdate,
+    req.body.enddate,
+    req.body.descript];
   client.query(SQL, values)
     .then(() => {
       let SQL = 'SELECT * FROM events WHERE project_id=$1;';
@@ -45,7 +50,7 @@ function testBump(req,res){
         .then(result =>{
           let eventsFromServer = result.rows;
           res.render('pages/test', eventsFromServer);
-        })
+        });
     });
 }
 function test(req,res){
@@ -55,10 +60,12 @@ function test(req,res){
       console.log(result.rows);
       let eventsFromServer = result.rows;
       res.render('pages/test', {eventsFromServer});
-    })
+    });
 }
 function initializeHomePage(req,res){
-  let SQL = `SELECT id, collaborators, name, description FROM projects;`;
+  let SQL = `
+  SELECT id, collaborators, name, description 
+  FROM projects;`;
   client.query(SQL)
     .then(result => {
       let cardbase = result.rows;
@@ -84,8 +91,8 @@ function initializeDashboardPage(req, res) {
         superagent.get(`${conString}/issues`),
         superagent.get(`${conString}/commits`)
       ]).then(([issues, commits]) => {
-        let latestIssue = issues.body.slice(0, 4);
-        let latestCommit = commits.body.slice(0, 4);
+        let latestIssue = issues.body.slice(0, 5);
+        let latestCommit = commits.body.slice(0, 5);
         res.render('pages/dashboard', {latestIssue, latestCommit});
       });
     });
@@ -120,30 +127,12 @@ function githubHit(req,res){
       console.log(data.body.name);
       console.log(data.body.open_issues);
     });
-  /* let issues = conString +'/issues/25';
-  console.log(issues);
-  superagent.get(issues)
-    .then(datum => {
-      console.log(datum.body.html_url);
-      console.log(datum.body.state);
-      console.log(datum.body.created_at);
-      console.log(datum.body.updated_at);
-    }) */
-  // .catch(error => {
-  //   console.error(error);
-  // });
 }
 
 function githubPostToBase(req, res) {
-/*   let githubLink = req.body.github_repo;
-  let splitHubUser = githubLink.split('/')[3];
-  let splitHubRepo = githubLink.split('/')[4]; */
-  /*  let conString = `${startOfString}${splitHubUser}/${splitHubRepo}`;
-  console.log(conString); */
-  /* superagent.get(conString)
-    .then(data => { */
-  let SQL = `INSERT INTO projects(collaborators ,name, startdate, enddate, repo_url, description)
-  VALUES ($1, $2, $3, $4, $5, $6);`;
+  let SQL = `
+    INSERT INTO projects(collaborators ,name, startdate, enddate, repo_url, description)
+    VALUES ($1, $2, $3, $4, $5, $6);`;
   let values = [
     req.body.collaborators,
     req.body.project_name,
@@ -153,7 +142,6 @@ function githubPostToBase(req, res) {
     req.body.description];
   client.query(SQL, values);
   res.render('pages/success');
-/* }); */
 }
 
 app.use(express.static(__dirname + '/public'));
@@ -161,19 +149,6 @@ app.use('*', (req, res) => res.render('pages/error'));
 app.listen(PORT, () => console.log(`server hath started on port ${PORT}`));
 
 //database initialization
-
-/* let sampleRequest = {
-  body : {
-    user : 'diego-ramos130',
-    repo : 'pptt'
-  }
-};  */
-//console.log(sampleRequest);
-
-// githubHit(sampleRequest, 0);
-
-//githubPostToBase(sampleRequest, 0);
-
 
 // Create a PDF file function
 function makePDF(req, res) {
