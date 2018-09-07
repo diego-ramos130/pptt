@@ -153,4 +153,3 @@ function makePDF(req, res) {
         });
     });
 }
-
