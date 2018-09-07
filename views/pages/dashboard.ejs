@@ -8,22 +8,23 @@
     <%- include ../partials/nav %>
   <main>
     <div class="dashboard-button-holder">
-      <div class="dashboard-button">
-          <button onclick="on()">Stand Up!</button>
+      <div class="dashboard-button-stand">
+          <button class="stand-up-button" onclick="on()">Stand Up!</button>
       </div>
-
       <div id="overlay" onclick="off()">
-          <div id="text">
-            <p>Standup Timer</p>
-            <p id="demo"></p>
-            <ul class="timer-ul">
-            <li class="timer">What did you accomplish yesterday?</li>
-            <li class="timer">What is the plan for today?</li>
-            <li class="timer">Are you dealing with any blockers?</li>
-            </ul>
-          </div>
+        <div id="text">
+          <p>Standup Timer</p>
+          <p id="demo"></p>
+          <ul class="timer-ul">
+          <li class="timer">What did you accomplish yesterday?</li>
+          <li class="timer">What is the plan for today?</li>
+          <li class="timer">Are you dealing with any blockers?</li>
+          </ul>
         </div>
+      </div>
+    </div>
 
+    <div class="dashboard-button-holder">
       <div class="dashboard-button">
         <a href="#">Calendar</a>
       </div>
@@ -40,9 +41,8 @@
         <% } else { %>
         <p class="dashboard-pTags">No issues currently!</p>
         <% } %>
-
     </div>
-    <div class="dashboard-div">
+    <div class="dashboard-div bottom-div">
       <p class="dashboard-title">Latest commits: </p>
       <%if (latestIssue.length > 0) { %>
       <% latestCommit.forEach(commit => { %>
@@ -52,7 +52,7 @@
         <p class="dashboard-pTags">No commits yet!</p>
         <% } %>
     </div>
-    <button class="dashboard-button">PDF CREATOR!</button>
+
     <script>
       $(function () {
           let parse =  <%- JSON.stringify(eventList) %>;
@@ -74,6 +74,7 @@
           standupTimer();
           timerOn = true;
         }
+
       }
         
       function off() {
@@ -86,12 +87,14 @@
         let now = new Date().getTime();
         let distance = countDownDate - now;
 
+
         let days = Math.floor(distance / (1000 * 60 * 60 * 24));
         let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
 
         if (distance < 0) {
           clearInterval(x);
@@ -117,6 +120,7 @@
           <button>Submit</button>
         </form>
       </div>
+
   </main>
   <%- include ../partials/footer %>
 </body>
