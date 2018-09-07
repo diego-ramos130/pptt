@@ -31,6 +31,8 @@ app.get('/form', initializeFormPage);
 app.get('/dashboard/:id', initializeDashboardPage);
 app.post('/dashboard/:id', testBump);
 app.get('/about', initializeAboutPage);
+app.get('/test', (req, res) => res.render('pages/test'));
+app.get('/timer', (req, res) => res.render('pages/timer'));
 app.get('/', initializeHomePage);
 app.get('/', githubHit); //put data into input fields here
 
