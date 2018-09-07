@@ -41,9 +41,8 @@
         <% } else { %>
         <p class="dashboard-pTags">No issues currently!</p>
         <% } %>
-
     </div>
-    <div class="dashboard-div">
+    <div class="dashboard-div bottom-div">
       <p class="dashboard-title">Latest commits: </p>
       <%if (latestIssue.length > 0) { %>
       <% latestCommit.forEach(commit => { %>
@@ -53,7 +52,7 @@
         <p class="dashboard-pTags">No commits yet!</p>
         <% } %>
     </div>
-    <button class="dashboard-button">PDF CREATOR!</button>
+
     <script>
       $(function () {
           let parse =  <%- JSON.stringify(eventList) %>;
@@ -106,6 +105,7 @@ standupTimer = ()  => {
 }
 
       </script>
+  <div class="dashboard-button-holder">
     <div id='calendar'></div>
     <div id='add-sum-stuff'>
       <form action="/dashboard/<%= id %>" method='POST'>
@@ -121,6 +121,7 @@ standupTimer = ()  => {
         <button>Submit</button>
       </form>
     </div>
+  </div>
   </main>
   <%- include ../partials/footer %>
 </body>
