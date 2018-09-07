@@ -33,6 +33,7 @@ app.post('/dashboard/:id', testBump);
 app.get('/about', initializeAboutPage);
 app.get('/', initializeHomePage);
 app.get('/', githubHit); //put data into input fields here
+app.get('/:id/pdf', makePDF);
 
 function initializeHomePage(req,res){
   let SQL = `
@@ -126,30 +127,39 @@ app.listen(PORT, () => console.log(`server hath started on port ${PORT}`));
 // Create a PDF file function
 function makePDF(req, res) {
   let SQL = `SELECT name, repo_url FROM projects
-              WHERE id=1;`;
-  client.query(SQL)
-    .then (result => {
-      let project = result.rows[0];
-      let splitHubUser = project.repo_url.split('/')[3];
-      let splitHubRepo = project.repo_url.split('/')[4];
-      let conString = `${startOfString}${splitHubUser}/${splitHubRepo}/issues`;
-      superagent.get(conString)
-        .then(data => {
-          let latestIssue = data.body.slice(0, 4);
-          let html;
-          ejs.renderFile('./views/pages/dashboard.ejs', {latestIssue}, function(err, res) {
-            if(res) {
-              html = res;
-              console.log(html);
-            }
-            else {
-              console.log(err);
-            }
-          });
-          pdf.create(html, options).toFile(function(err, res) {
-            if (err) return console.log(err);
-            console.log(res);
-          });
-        });
+  WHERE id=$1;`;
+  let id = req.params.id;
+  let values = [req.params.id];
+  let SQLcal= 'SELECT title, start, "end", description FROM events WHERE project_id=$1;';
+  Promise.all([
+    client.query(SQL, values),
+    client.query(SQLcal, values),
+  ]) .then(([projectsData, eventsData]) => {
+    let project = projectsData.rows[0];
+    let eventList = eventsData.rows;
+    let splitHubUser = project.repo_url.split('/')[3];
+    let splitHubRepo = project.repo_url.split('/')[4];
+    let conString = `${startOfString}${splitHubUser}/${splitHubRepo}`;
+    Promise.all([
+      superagent.get(`${conString}/issues`),
+      superagent.get(`${conString}/commits`),
+    ]).then(([issues, commits]) => {
+      let latestIssue = issues.body.slice(0,5);
+      let latestCommit = commits.body.slice(0,5);
+      let html;
+      ejs.renderFile('./views/pages/dashboard.ejs', {latestIssue, latestCommit, eventList, id}, function(err, res) {
+        if(res) {
+          html = res;
+          console.log(html);
+        }
+        else {
+          console.log(err);
+        }
+      });
+      pdf.create(html, options).toFile(function(err, res) {
+        if (err) return console.log(err);
+        console.log(res);
+      });
     });
+  });
 }
