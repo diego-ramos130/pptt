@@ -67,59 +67,56 @@
         })
       })
 
-          let timerOn = false;
-        function on() {
-            document.getElementById("overlay").style.display = "block";
-              if(!timerOn) {
-                standupTimer();
-                timerOn = true;
-              }
+      let timerOn = false;
+      function on() {
+        document.getElementById("overlay").style.display = "block";
+        if(!timerOn) {
+          standupTimer();
+          timerOn = true;
         }
+      }
         
-        function off() {
-            document.getElementById("overlay").style.display = "none";
+      function off() {
+        document.getElementById("overlay").style.display = "none";
+      }
 
+      standupTimer = ()  => { 
+        let countDownDate = new Date(Date.now() + 8*60000);
+        let x = setInterval(function() {
+        let now = new Date().getTime();
+        let distance = countDownDate - now;
+
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("demo").innerHTML = "Back to work!";
         }
-
-        // Set the date we're counting down to
-standupTimer = ()  => { 
-  var countDownDate = new Date(Date.now() + 8*60000);
-  var x = setInterval(function() {
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
-
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-
-  // If the count down is finished, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "Back to work!";
-  }
-}, 1000);
-}
+        }, 1000);
+      }
 
       </script>
-    <div id='calendar'></div>
-    <div id='add-sum-stuff'>
-      <form action="/dashboard/<%= id %>" method='POST'>
-        <input name="project_id" type="hidden" value="<%=id%>">
-        <label for="name">Name of Project</label>
-        <input name='name' type='text'>
-        <label for='start'>Start Date</label>
-        <input name='start' type='date'>
-        <label for='end'>End Date</label>
-        <input name='end' type='date'>
-        <label for='description'>Description</label>
-        <input name='description' type='textarea'>
-        <button>Submit</button>
-      </form>
-    </div>
+    
+      <div id='calendar'></div>
+      <div id='add-sum-stuff'>
+        <form action="/dashboard/<%= id %>" method='POST'>
+          <input name="project_id" type="hidden" value="<%=id%>">
+          <label for="name">Name of Project</label>
+          <input name='name' type='text'>
+          <label for='start'>Start Date</label>
+          <input name='start' type='date'>
+          <label for='end'>End Date</label>
+          <input name='end' type='date'>
+          <label for='description'>Description</label>
+          <input name='description' type='textarea'>
+          <button>Submit</button>
+        </form>
+      </div>
   </main>
   <%- include ../partials/footer %>
 </body>
