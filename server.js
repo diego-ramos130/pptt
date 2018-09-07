@@ -1,7 +1,6 @@
-
 'use strict';
+
 require('dotenv').config();
-const $ = require('jquery');
 const pg = require('pg');
 const express = require('express');
 const PORT = process.env.PORT;
@@ -32,7 +31,6 @@ app.get('/dashboard/:id', initializeDashboardPage);
 app.post('/dashboard/:id', testBump);
 app.get('/about', initializeAboutPage);
 app.get('/', initializeHomePage);
-app.get('/', githubHit); //put data into input fields here
 
 function initializeHomePage(req,res){
   let SQL = `
@@ -86,22 +84,6 @@ function initializeDashboardPage(req, res) {
 
 function initializeAboutPage(req, res) {
   res.render('pages/about');
-}
-
-function throwError(response, err) {
-  console.error(err);
-  response.render('pages/sqlerror');
-}
-
-function githubHit(req,res){
-  let endOfString = `${req.body.user}/${req.body.repo}`;
-  let conString = startOfString + endOfString;
-  superagent.get(conString)
-    .then(data => {
-      console.log(data.body.html_url);
-      console.log(data.body.name);
-      console.log(data.body.open_issues);
-    });
 }
 
 function githubPostToBase(req, res) {
