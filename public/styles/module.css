@@ -47,3 +47,25 @@
 .dashboard-button:hover {
   background-color: rgb(3, 169, 209);
 }
+
+.dashboard-button-stand {
+    width: 29%;
+    /* margin: auto; */
+    /* padding: 10px; */
+    text-align: center;
+    /* transform: rotate(-16deg);*/
+}
+
+.stand-up-button {
+    background-color: rgb(34, 19, 55);
+    border-radius: .25em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: inline-block;
+    color: rgb(205, 213, 298);
+    display: block;
+    letter-spacing: .1em;
+    /* margin: .75em 0; */
+    border: none;
+    background-image: none;
+    height: 4em;
+}

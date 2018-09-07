@@ -8,22 +8,23 @@
     <%- include ../partials/nav %>
   <main>
     <div class="dashboard-button-holder">
-      <div class="dashboard-button">
-          <button onclick="on()">Stand Up!</button>
+      <div class="dashboard-button-stand">
+          <button class="stand-up-button" onclick="on()">Stand Up!</button>
       </div>
-
       <div id="overlay" onclick="off()">
-          <div id="text">
-            <p>Standup Timer</p>
-            <p id="demo"></p>
-            <ul class="timer-ul">
-            <li class="timer">What did you accomplish yesterday?</li>
-            <li class="timer">What is the plan for today?</li>
-            <li class="timer">Are you dealing with any blockers?</li>
-            </ul>
-          </div>
+        <div id="text">
+          <p>Standup Timer</p>
+          <p id="demo"></p>
+          <ul class="timer-ul">
+          <li class="timer">What did you accomplish yesterday?</li>
+          <li class="timer">What is the plan for today?</li>
+          <li class="timer">Are you dealing with any blockers?</li>
+          </ul>
         </div>
+      </div>
+    </div>
 
+    <div class="dashboard-button-holder">
       <div class="dashboard-button">
         <a href="#">Calendar</a>
       </div>
@@ -75,14 +76,14 @@
                 timerOn = true;
               }
         }
-        
+
         function off() {
             document.getElementById("overlay").style.display = "none";
 
         }
 
         // Set the date we're counting down to
-standupTimer = ()  => { 
+standupTimer = ()  => {
   var countDownDate = new Date(Date.now() + 8*60000);
   var x = setInterval(function() {
   var now = new Date().getTime();
@@ -96,7 +97,7 @@ standupTimer = ()  => {
   document.getElementById("demo").innerHTML = days + "d " + hours + "h "
   + minutes + "m " + seconds + "s ";
 
-  // If the count down is finished, write some text 
+  // If the count down is finished, write some text
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("demo").innerHTML = "Back to work!";
