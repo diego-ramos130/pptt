@@ -1,0 +1,49 @@
+.dashboard-div {
+  background-color: ghostwhite;
+  width: 95%;
+}
+
+.dashboard-title {
+  background-color: ghostwhite;
+  font-weight: bold;
+  margin-top: 1em;
+  padding: .8em .5em 0 .5em;
+}
+
+.dashboard-pTags {
+  padding: .5em;
+  background-color: ghostwhite;
+}
+
+.dashboard-aTags {
+  background-color: ghostwhite;
+}
+
+.dashboard-button-holder {
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+}
+
+.dashboard-button {
+  background-color: rgb(34, 19, 55);
+  border-radius: .25em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: inline-block;
+  font-size: .75em;
+  padding-top: .04em;
+  text-align: center;
+  width: 27%;
+}
+
+.dashboard-button > a {
+  background-color: transparent;
+  color: rgb(205, 213, 298);
+  display: block;
+  letter-spacing: .1em;
+  margin: .75em 0;
+}
+
+.dashboard-button:hover {
+  background-color: rgb(3, 169, 209);
+}

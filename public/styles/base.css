@@ -4,7 +4,6 @@
   box-sizing: border-box;
   color: rgb(34, 19, 55);
   font-family: Helvetica, Arial, sans-serif;
-  font-size: large;
   margin: 0 auto;
 }
 
@@ -13,7 +12,7 @@ h1 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   color: ghostwhite;;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: xx-large;
+  font-size: 2em;
   font-weight: bolder;
   font-variant: small-caps;
   margin: 0;
@@ -50,10 +49,6 @@ nav {
   height: 50px;
   padding-top: 20px;
   width: 375px;
-}
-
-nav > ul {
-  font-size: large;
 }
 
 nav > ul > li {

@@ -7,64 +7,68 @@
 <body>
     <%- include ../partials/nav %>
   <main>
-    <button>Stand Up!</button>
-      <div>
-        <p>Latest issues: </p>
-        <%if (latestIssue.length > 0) { %>
-          <% latestIssue.forEach(issue => { %>
-            <p><a href='<%=issue.html_url %>'><%=issue.title %></a></p>
-            <%}) %>
-          <% } else { %>
-          <p>No issues currently!</p>
-          <% } %>
-
+    <div class="dashboard-button-holder">
+      <div class="dashboard-button">
+        <a href="#">Stand Up!</a>
       </div>
-      <div>
-        <p>Latest commits: </p>
-        <%if (latestIssue.length > 0) { %>
-        <% latestCommit.forEach(commit => { %>
-          <p><a href='<%=commit.html_url %>'><%=commit.commit.message.split('\n')[0] %></a></p>
-        <%}) %>
+      <div class="dashboard-button">
+        <a href="#">Calendar</a>
+      </div>
+      <div class="dashboard-button">
+        <a href="#">Checklist</a>
+      </div>
+    </div>
+    <div class="dashboard-div">
+      <p class="dashboard-title">Latest issues: </p>
+      <%if (latestIssue.length > 0) { %>
+        <% latestIssue.forEach(issue => { %>
+          <p class="dashboard-pTags"><a href='<%=issue.html_url %>' class="dashboard-aTags"><%=issue.title %></a></p>
+          <%}) %>
         <% } else { %>
-          <p>No commits yet!</p>
-          <% } %>
-      </div>
-      <div>
-        <p>Project checklist:</p>
-      </div>
-      <div>
-        <p>Upcoming meetings:</p>
-      </div>
-      <button>PDF CREATOR!</button>
-      <script>
-        $(function () {
-           let parse =  <%- JSON.stringify(eventList) %>;
-           $('#calendar').fullCalendar({ 
-             defaultView: 'basicWeek',
-            header: { 
-              left: 'title', 
-              center: '', 
-              right: 'basicWeek,month prev,next'
-            },
-            events: parse
-          })
+        <p class="dashboard-pTags">No issues currently!</p>
+        <% } %>
+
+    </div>
+    <div class="dashboard-div">
+      <p class="dashboard-title">Latest commits: </p>
+      <%if (latestIssue.length > 0) { %>
+      <% latestCommit.forEach(commit => { %>
+        <p class="dashboard-pTags"><a href='<%=commit.html_url %>' class="dashboard-aTags"><%=commit.commit.message.split('\n')[0] %></a></p>
+      <%}) %>
+      <% } else { %>
+        <p class="dashboard-pTags">No commits yet!</p>
+        <% } %>
+    </div>
+    <button class="dashboard-button">PDF CREATOR!</button>
+    <script>
+      $(function () {
+          let parse =  <%- JSON.stringify(eventList) %>;
+          $('#calendar').fullCalendar({
+            defaultView: 'basicWeek',
+          header: {
+            left: 'title',
+            center: '',
+            right: 'basicWeek,month prev,next'
+          },
+          events: parse
         })
-        </script>
-      <div id='calendar'></div>
-      <div id='add-sum-stuff'>
-        <form action="/dashboard/<%= id %>" method='POST'>
-          <input name="project_id" type="hidden" value="<%=id%>">
-          <label for="name">Name of Project</label>
-          <input name='name' type='text'>
-          <label for='start'>Start Date</label>
-          <input name='start' type='date'>
-          <label for='end'>End Date</label>
-          <input name='end' type='date'>
-          <label for='description'>Description</label>
-          <input name='description' type='textarea'>
-          <button>Submit</button>
-        </form>
-      </div>
+      })
+      </script>
+    <div id='calendar'></div>
+    <div id='add-sum-stuff'>
+      <form action="/dashboard/<%= id %>" method='POST'>
+        <input name="project_id" type="hidden" value="<%=id%>">
+        <label for="name">Name of Project</label>
+        <input name='name' type='text'>
+        <label for='start'>Start Date</label>
+        <input name='start' type='date'>
+        <label for='end'>End Date</label>
+        <input name='end' type='date'>
+        <label for='description'>Description</label>
+        <input name='description' type='textarea'>
+        <button>Submit</button>
+      </form>
+    </div>
   </main>
   <%- include ../partials/footer %>
 </body>
